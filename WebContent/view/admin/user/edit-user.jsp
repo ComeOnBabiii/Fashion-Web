@@ -40,7 +40,7 @@
         <div class="add-content">
 
             <br>
-            <h2 align="center">Thêm User</h2>
+            <h2 align="center">Sua User</h2>
             <div class="add-table">
                 <div class="hr">
                     <hr>
