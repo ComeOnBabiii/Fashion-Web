@@ -77,7 +77,7 @@
                            ${product.price}
                         </p>
                         <input id="idInput"  type="button" name="addtocart" id="submit" value="Submit"
-                        onclick="addtocart()">
+                        onclick="addtocart(${product.id})">
                         </div>  
                         
                     </div>

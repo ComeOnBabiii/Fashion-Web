@@ -29,56 +29,6 @@ async function fetchGet(
     }
 };
 
-function refreshDataFromServer() {
-    const parent = document.getElementById('tbody');
-    fetchGet(null, null, null)
-        .then(users => {
-            users.map((user) => {
-            	var idz = `${user.id}`;
-                var child = createNode('tr');
-                var tdId = createNode('td');
-                var tdName = createNode('td');
-                var tdDescription = createNode('td');
-                var tdDelete = createNode('td');
-                var tdEdit = createNode('td');
-                var btnDelete = createNode('button');
-                var btnEdit = createNode('button');
-                //child.className = "product-image";
-                tdId.innerHTML = `${user.id}`;
-                tdName.innerHTML = `${user.name}`;
-                tdDescription.innerHTML = `${user.description}`;
-                btnDelete.innerHTML = "Delete";
-                
-                btnDelete.onclick = function(){
-                    deleteObjectToServer(user.id).then(document.location.reload(true));
-                };
-                
-                btnEdit.innerHTML = "Edit";
-                btnEdit.onclick = function(){
-                	location.replace("http://localhost:8080/Fashion/admin/category/edit?id="+idz)              	
-                };
-                
-                append(tdEdit, btnEdit);
-                append(tdDelete, btnDelete);
-                append(child, tdId);
-                append(child, tdName);
-                append(child, tdDescription);
-                append(child, tdDelete);
-                append(child, tdEdit);
-                append(parent, child);
-            })
-            console.log(users);
-        })
-        .catch(error => {
-            console.log(error)
-        });
-};
-
-
-window.addEventListener('load', function () {
-    refreshDataFromServer();
-}, false);
-
 function createNode(element) {
     return document.createElement(element);
 }
@@ -112,9 +62,10 @@ async function insertObjectToServer(obj) {
     document.getElementById("passwordInput").value = "";
 }*/
 
-async function addtocart() {
-	var id = await document.getElementById("idInput").value;	
-	debugger;
+async function addtocart(m) {
+	alert(m);
+	//var id = await document.getElementById("idInput").value;	
+	//debugger;
 	    var obj = {
 	    	id:id    	
 	    }
