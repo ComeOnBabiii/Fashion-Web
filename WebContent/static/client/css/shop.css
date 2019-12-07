@@ -1,61 +1,65 @@
 .container {
-	width: 100%;
+    width: 100%;
 }
 
 .navbar {
-	display: block;
-	/* overflow: hidden; */
+    display: block;
+    /* overflow: hidden; */
 }
 
 .navbar div {
-	display: inline-block;
-	margin: 2% 2%;
-	float: right;
+    display: inline-block;
+    margin: 2% 2%;
+    float: right;
 }
 
 .navbar a {
-	color: black;
-	text-decoration: none;
-	font-family: Lato;
+    color: black;
+    text-decoration: none;
+    font-family: Lato;
 }
 
 .menu-icon {
-	display: none;
+    display: none;
 }
 
 .navbar a:hover {
-	color: goldenrod !important;
+    color: goldenrod !important;
 }
 
 .navbar .logo {
-	float: left !important;
+    float: left !important;
 }
 
-.selector{
+.selector {
     clear: both;
     display: block;
     text-align: center;
     padding-top: 20px;
     margin-top: 20px;
 }
-.selector span{
+
+.selector span {
     display: inline-block;
     font-size: 20px;
-    margin-left: 20px ;
+    margin-left: 20px;
 }
-.new-arrival{
+
+.new-arrival {
     margin-top: 20px;
     margin-bottom: 0px;
-    margin-left:20px;   
+    margin-left: 20px;
     padding: 0%;
 }
-.product-container{
+
+.product-container {
     display: grid;
-  grid-template-columns: auto auto auto auto;
-  background-color: white;
-  padding: 10px;
+    grid-template-columns: auto auto auto auto;
+    background-color: white;
+    padding: 10px;
 }
-.product-image{
+
+.product-image {
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid white;
     padding: 20px;
@@ -63,118 +67,118 @@
     text-align: center;
 }
 
-.product-image .product-description{
-    margin-left: 30px; 
+.product-image .product-description {
+    margin-left: 30px;
     text-align: left !important;
 }
 
 .footer {
-	/* height: 30vh; */
-	display: grid;
-	grid-template-columns: auto auto auto;
-	background-color: #878787;
-	padding: 20px !important;
+    /* height: 30vh; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #878787;
+    padding: 20px !important;
 }
 
 .footer-content {
-	margin-left: 20px !important;
-	color: rgba(255, 255, 255, 0.8);
-	font-size: 15px;
-	text-align: left;
+    margin-left: 20px !important;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    text-align: left;
 }
 
 .footer-content .fa-instagram {
-	margin-left: 20px !important;
+    margin-left: 20px !important;
 }
 
 .footer a {
-	color: white;
-	text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 .footer a :hover {
-	color: goldenrod;
+    color: goldenrod;
 }
 
 @media only screen and (min-width: 720px) {
-	.dropdown div {
-		display: none;
-	}
+    .dropdown div {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 720px) {
-	body {
-		width: 100%;
-	}
-	.container {
-		width: 100%;
-	}
-	.navbar {
-		display: block;
-	}
-	.navbar i {
-		min-width: 18px;
-		min-height: 18px;
-	}
-	.navbar .option {
-		display: none !important;
-	}
-	.dropbtn {
-		background-color: white;
-		padding: 16px;
-		font-size: 16px;
-		border: none;
-		cursor: pointer;
-	}
-	.dropdown {
-		position: relative;
-		display: inline-block;
-		float: left !important;
-	}
-	.navbar .logo {
-		float: none !important;
-		margin-left: 20vw;
-	}
-	.dropdown-content {
-		display: none !important;
-		position: absolute;
-		background-color: #f9f9f9;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 1;
-	}
-	.dropdown-content a {
-		color: black;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-		right: 500px;
-	}
-	.dropdown-content a:hover {
-		background-color: #f1f1f1
-	}
-	.dropdown:hover .dropdown-content {
-		display: block !important;
-	}
-	.dropdown:hover .dropbtn {
-		background-color: #3e8e41;
-	}
-	.banner {
-		width: 100%;
-	}
-	.banner img {
-		width: 100%;
-	}
-	.footer {
-		height: 30vh;
+    body {
+        width: 100%;
     }
-    .product-container{
+    .container {
+        width: 100%;
+    }
+    .navbar {
+        display: block;
+    }
+    .navbar i {
+        min-width: 18px;
+        min-height: 18px;
+    }
+    .navbar .option {
+        display: none !important;
+    }
+    .dropbtn {
+        background-color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        float: left !important;
+    }
+    .navbar .logo {
+        float: none !important;
+        margin-left: 20vw;
+    }
+    .dropdown-content {
+        display: none !important;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        right: 500px;
+    }
+    .dropdown-content a:hover {
+        background-color: #f1f1f1
+    }
+    .dropdown:hover .dropdown-content {
+        display: block !important;
+    }
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+    .banner {
+        width: 100%;
+    }
+    .banner img {
+        width: 100%;
+    }
+    .footer {
+        height: 30vh;
+    }
+    .product-container {
         display: grid;
-      grid-template-columns: auto;
-      background-color: white;
-      padding: 10px;
+        grid-template-columns: auto;
+        background-color: white;
+        padding: 10px;
     }
-    .product-image{
+    .product-image {
         background-color: rgba(255, 255, 255, 0.8);
         border: 1px solid white;
         padding: 20px;
@@ -182,8 +186,13 @@
         text-align: center;
         border-bottom: 1px solid whitesmoke;
     }
-    .product-image .product-description{
-        margin-left: 20%; 
+    .product-image .product-description {
+        margin-left: 20%;
         text-align: left !important;
     }
+}
+
+.img-product {
+    width: 300px;
+    height: 300px;
 }

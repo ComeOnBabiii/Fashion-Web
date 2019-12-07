@@ -55,27 +55,14 @@
                         <a href="#">SHOP</a>
                     </div>
                 </div>
-                <div class="selector">
-                    <span><a>Quan</a></span>
+                <div id="selector" class="selector">
+
                 </div>
                 <hr>
 
                 <div class="product-list">
-                    <div class="product-container">
-                        <div class="product-image">
-                            <div>
-                                <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-                                <img src="${bootstrap}" />
-                            </div>
-                            <div class="product-description">
-                                <p>Quan1</p>
-                                <p>
-                                    10000
-                                </p>
-                                <input id="idInput" type="button" name="addtocart" id="submit" value="Submit">
-                            </div>
+                    <div id="product-container" class="product-container">
 
-                        </div>
                     </div>
                 </div>
 
