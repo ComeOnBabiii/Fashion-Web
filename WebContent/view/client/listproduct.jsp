@@ -1,120 +1,115 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-      <script src="https://use.fontawesome.com/0cc436713d.js" crossorigin="anonymous"></script>
+        <!DOCTYPE html>
+        <html>
 
- 	<c:url value="/static/client/css/shop.css" var="bootstrap"></c:url>
-	<link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
-</head>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <script src="https://use.fontawesome.com/0cc436713d.js" crossorigin="anonymous"></script>
 
-<body>
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="#">
-                        <img src="images/logos/1.png" />
-                    </a>
-                </div>
-                <div class="dropdown">
-                    <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
-                    <div class="dropdown-content">
-                        <!-- <a href="#"><img src="./images/shopping-cart.png" /></a> -->
+            <c:url value="/static/client/css/shop.css" var="bootstrap"></c:url>
+            <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
+        </head>
+
+        <body>
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="images/logos/1.png" />
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
+                        <div class="dropdown-content">
+                            <!-- <a href="#"><img src="./images/shopping-cart.png" /></a> -->
+                            <a href="#">PORTFOLIO</a>
+                            <a href="#">PAGE</a>
+                            <a href="#">MEGA MENU</a>
+                            <a href="#">SHOP</a>
+                        </div>
+                    </div>
+
+
+                    <div class="searh-icon option">
+                        <img src="./images/search-icon.png" />
+                    </div>
+                    <div class="cart-icon option">
+                        <a href="#"><img src="./images/shopping-cart.png" /></a>
+                    </div>
+                    <div class="portfolio option">
                         <a href="#">PORTFOLIO</a>
+                    </div>
+                    <div class="blog option">
                         <a href="#">PAGE</a>
+                    </div>
+                    <div class="mega menu option">
                         <a href="#">MEGA MENU</a>
+                    </div>
+
+                    <div class="shop option">
                         <a href="#">SHOP</a>
                     </div>
                 </div>
+                <div class="selector">
+                    <span><a>Quan</a></span>
+                </div>
+                <hr>
 
-
-                <div class="searh-icon option">
-                    <img src="./images/search-icon.png" />
-                </div>
-                <div class="cart-icon option">
-                    <a href="#"><img src="./images/shopping-cart.png" /></a>
-                </div>
-                <div class="portfolio option">
-                    <a href="#">PORTFOLIO</a>
-                </div>
-                <div class="blog option">
-                    <a href="#">PAGE</a>
-                </div>
-                <div class="mega menu option">
-                    <a href="#">MEGA MENU</a>
-                </div>
-
-                <div class="shop option">
-                    <a href="#">SHOP</a>
-                </div>
-            </div>
-            <div class="selector">
-            <c:forEach items="${categories}" var="categories">
-                <span><a>${categories.name}</a></span>
-                </c:forEach>
-            </div>
-            <hr>
-
-                    <div class="product-list">
-
-            <div class="product-container">
-                <c:forEach items="${productes}" var="product">   
-                    <div class="product-image">    
-                         <input id="idInput" type ="text" value="${product.id}">
-                        <div>
-                        <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-                        <img src="${bootstrap}" />
-                        </div>
+                <div class="product-list">
+                    <div class="product-container">
+                        <div class="product-image">
+                            <div>
+                                <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
+                                <img src="${bootstrap}" />
+                            </div>
                             <div class="product-description">
-                        <p>${product.name}</p>
-                        <p>
-                           ${product.price}
-                        </p>
-                        <input id="idInput"  type="button" name="addtocart" id="submit" value="Submit"
-                        onclick="addtocart(${product.id})">
-                        </div>  
-                        
+                                <p>Quan1</p>
+                                <p>
+                                    10000
+                                </p>
+                                <input id="idInput" type="button" name="addtocart" id="submit" value="Submit">
+                            </div>
+
+                        </div>
                     </div>
-                </c:forEach>
+                </div>
+
+                <div class="footer">
+                    <div class="footer-content">
+                        <a href="/">
+                            <p>My account</p>
+                        </a>
+                        <a href="/">
+                            <p>Payment</p>
+                        </a>
+
+                        <a href="/">
+                            <p>Shipping</p>
+                        </a>
+
+                        <a href="/">
+                            <p>About</p>
+                        </a>
+                    </div>
+                    <div class="footer-content">
+                        <h4>Stay Connected</h4>
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                    <div class="footer-content">
+                        <h5>&copy;QDND</h5>
+                    </div>
+                </div>
             </div>
-        </div>
 
-            <div class="footer">
-                <div class="footer-content">
-                    <a href="/">
-                        <p>My account</p>
-                    </a>
-                    <a href="/">
-                        <p>Payment</p>
-                    </a>
+            <c:url value="/static/client/js/listProduct.js" var="test"></c:url>
+            <script src="${test}"></script>
+        </body>
 
-                    <a href="/">
-                        <p>Shipping</p>
-                    </a>
-
-                    <a href="/">
-                        <p>About</p>
-                    </a>
-                </div>
-                <div class="footer-content">
-                    <h4>Stay Connected</h4>
-                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                    <a href=""><i class="fab fa-instagram"></i></a>
-
-                </div>
-                <div class="footer-content">
-                    <h5>&copy;QDND</h5>
-                </div>
-            </div>
-        </div>
-
-	<c:url value="/static/admin/js/addtocart.js" var="test"></c:url>
-	<script src="${test}"></script>
-</body>
-</html>
+        </html>

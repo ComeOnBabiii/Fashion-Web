@@ -7,9 +7,7 @@ async function fetchGet(url) {
         };
         let requestInit = { method: 'GET', headers };
         const response = await fetch(url, requestInit);
-        if (response.status === 403) throw Error('invalidToken');
         if (response.status === 200) return await response.json();
-        if (messErr) throw Error(messErr);
     } catch (error) {
         throw error;
     }
@@ -146,14 +144,13 @@ async function insertUser() {
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
-    
+
     var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
     var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
     var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
-    var encrypted = CryptoJS.AES.encrypt(utf8Stringified.toString(), rkEncryptionKey, 
-   {mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7, iv: rkEncryptionIv});
+    var encrypted = CryptoJS.AES.encrypt(utf8Stringified.toString(), rkEncryptionKey, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7, iv: rkEncryptionIv });
     password = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-    
+
     var obj = {
         name: name,
         username: username,

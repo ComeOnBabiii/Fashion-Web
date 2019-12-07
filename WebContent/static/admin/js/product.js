@@ -7,9 +7,7 @@ async function fetchGet(url) {
         };
         let requestInit = { method: 'GET', headers };
         const response = await fetch(url, requestInit);
-        if (response.status === 403) throw Error('invalidToken');
         if (response.status === 200) return await response.json();
-        if (messErr) throw Error(messErr);
     } catch (error) {
         throw error;
     }
