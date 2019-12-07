@@ -3,7 +3,7 @@ package com.fashion.model;
 public class CartItem {
 	private int id;
 	private int quantity;
-	private long unitPrice;
+	private double unitPrice;
 	private Product product;
 	private Cart cart;
 
@@ -23,11 +23,11 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	public long getUnitPrice() {
+	public double getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(long unitPrice) {
+	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
