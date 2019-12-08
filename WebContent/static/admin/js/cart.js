@@ -30,7 +30,7 @@ function refreshCartFromServer() {
                 tdDate.innerHTML = `${cart.buyDate}`;
                 btnDetail.innerHTML = "Detail";
                 btnDetail.onclick = function() {
-                    alert(idz);
+                    location.replace("http://localhost:8080/Fashion/admin/cartitem/list?id=" + idz);
                 };
 
                 append(tdDetail, btnDetail);
@@ -40,7 +40,6 @@ function refreshCartFromServer() {
                 append(child, tdDetail);
                 append(parent, child);
             })
-            console.log(users);
         })
         .catch(error => {
             console.log(error)

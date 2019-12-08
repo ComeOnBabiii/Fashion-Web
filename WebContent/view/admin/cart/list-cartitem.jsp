@@ -47,9 +47,10 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Customer</th>
-                                <th>Date of purchase</th>
-                                <th>Detail</th>
+                                <th>CartID</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
                             </tr>
                         </thead>
                         <tbody id="tbody">
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-    <c:url value="/static/admin/js/cart.js" var="test"></c:url>
+    <c:url value="/static/admin/js/cartitem.js" var="test"></c:url>
     <script src="${test}"></script>
 
 </body>
