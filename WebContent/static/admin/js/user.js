@@ -174,7 +174,7 @@ async function insertUser() {
         }
         await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
-        alert("Invalid");
+        alert("Invalid username");
         checked = 0;
     }
 
