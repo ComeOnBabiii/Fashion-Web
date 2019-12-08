@@ -24,7 +24,7 @@
                 </a>
             </div>
            <div class="dropdown">
-                        <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
+                        <div class="menu-icon dropbtn"><i class="fa fa-bars icon-3x"></i></div>
                         <div class="dropdown-content">                
                             <a href="/Fashion/listcart" >
                            		<c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>

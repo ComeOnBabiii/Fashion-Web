@@ -23,7 +23,7 @@
                 </a>
             </div>
                     <div class="dropdown">
-                        <div class="menu-icon dropbtn"><i class="fas fa-bars"></i></i></div>
+                        <div class="menu-icon dropbtn"><i class="fa fa-bars"></i></i></div>
                         <div class="dropdown-content">                
                             <a href="/Fashion/listcart" >
                            		<c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
