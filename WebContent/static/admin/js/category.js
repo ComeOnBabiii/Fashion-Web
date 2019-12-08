@@ -140,23 +140,31 @@ function append(parent, el) {
 async function insertCategory() {
     var name = await document.getElementById("nameInput").value;
     var description = await document.getElementById("descriptionInput").value;
-    var obj = {
-        name: name,
-        description: description
+    if (name !== "") {
+        var obj = {
+            name: name,
+            description: description
+        }
+        await insertObjectToServer("http://localhost:8080/Fashion/getListCategory/api", obj).then(
+            location.replace("http://localhost:8080/Fashion/admin/category/list")
+        )
+    } else {
+        alert("Invalid category");
     }
-    await insertObjectToServer("http://localhost:8080/Fashion/getListCategory/api", obj).then(
-        location.replace("http://localhost:8080/Fashion/admin/category/list")
-    )
 }
 
 async function updateCategory() {
     var id = await document.getElementById("idInput").value;
     var name = await document.getElementById("nameInput").value;
     var description = await document.getElementById("descriptionInput").value;
-    var obj = {
-        id: id,
-        name: name,
-        description: description
+    if (name !== "") {
+        var obj = {
+            id: id,
+            name: name,
+            description: description
+        }
+        updateObjectToServer("http://localhost:8080/Fashion/getListCategory/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/category/list"));
+    } else {
+        alert("Invalid category");
     }
-    updateObjectToServer("http://localhost:8080/Fashion/getListCategory/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/category/list"));
 }

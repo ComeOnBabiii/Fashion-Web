@@ -140,17 +140,22 @@ async function insertProduct() {
     var name = await document.getElementById("nameInput").value;
     var price = await document.getElementById("priceInput").value;
     var idcategory = await document.getElementById("categoryInput").value;
-    var obj = {
-        name: name,
-        price: price,
-        category: {
-            id: idcategory,
-        },
-        image: result
+    if (name !== "" && price !== "") {
+        var obj = {
+            name: name,
+            price: price,
+            category: {
+                id: idcategory,
+            },
+            image: result
+        }
+        await insertObjectToServer('http://localhost:8080/Fashion/getListProduct/api', obj).then(
+            location.replace("http://localhost:8080/Fashion/admin/product/list")
+        )
+    } else {
+        alert("Invalid product");
     }
-    await insertObjectToServer('http://localhost:8080/Fashion/getListProduct/api', obj).then(
-        location.replace("http://localhost:8080/Fashion/admin/product/list")
-    )
+
 }
 
 async function updateProduct() {
@@ -158,16 +163,21 @@ async function updateProduct() {
     var name = await document.getElementById("nameInput").value;
     var price = await document.getElementById("priceInput").value;
     var idcategory = await document.getElementById("categoryInput").value;
-    var obj = {
-        id: id,
-        name: name,
-        price: price,
-        category: {
-            id: idcategory,
-        },
-        image: result
+    if (name !== "" && price !== "") {
+        var obj = {
+            id: id,
+            name: name,
+            price: price,
+            category: {
+                id: idcategory,
+            },
+            image: result
+        }
+        await updateObjectToServer('http://localhost:8080/Fashion/getListProduct/api', obj).then(location.replace("http://localhost:8080/Fashion/admin/product/list"))
+    } else {
+        alert("Invalid product");
     }
-    await updateObjectToServer('http://localhost:8080/Fashion/getListProduct/api', obj).then(location.replace("http://localhost:8080/Fashion/admin/product/list"))
+
 }
 
 function getBase64OfFile(file, callback) {
