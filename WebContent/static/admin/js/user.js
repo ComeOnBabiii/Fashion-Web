@@ -7,7 +7,7 @@ async function fetchGet(url) {
         };
         let requestInit = { method: 'GET', headers };
         const response = await fetch(url, requestInit);
-        if (response.status === 200) return await response.json();
+        return await response.json();
     } catch (error) {
         throw error;
     }
@@ -25,7 +25,7 @@ async function insertObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -42,7 +42,7 @@ async function updateObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -57,16 +57,18 @@ async function deleteObjectToServer(url, id) {
             },
         });
         var responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : `);
     }
 }
+var userFil;
 
 function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
     fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
+            userFil = users;
             users.map((user, index) => {
                 var idz = `${user.id}`;
                 var child = createNode('tr');
@@ -114,9 +116,10 @@ function refreshDataFromServer() {
         });
 };
 
-
 window.addEventListener('load', function() {
     refreshDataFromServer();
+    console.log(userFil);
+    debugger;
 }, false);
 
 function createNode(element) {
