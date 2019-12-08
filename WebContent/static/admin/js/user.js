@@ -143,8 +143,10 @@ async function insertUser() {
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
-    var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
-
+    var rollAdmin = await document.getElementById("role_admin").checked;
+    var rollRole = await document.getElementById("role_user").checked;
+    var role= rollAdmin===true? "admin" : "user"; 
+    
     var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
     var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
     var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
@@ -155,7 +157,7 @@ async function insertUser() {
         name: name,
         username: username,
         password: password,
-        rollAdmin: rollAdmin,
+        rollAdmin: role,
         avatar: result
     }
     debugger;

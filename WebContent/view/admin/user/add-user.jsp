@@ -65,8 +65,10 @@
                         <hr>
                     </div>
                     <label for="exampleInputRoll">Roll</label>
-                    <input id="roleAdmin" name="roleAdmin" type="radio" value="ROLE_ADMIN">ADMIN
-                    <input name="role" type="radio" value="ROLE_USER">USER
+                    <label for="male">Admin</label>
+        			<input type="radio" name="gender" id="role_admin" value="admin" checked>
+     				 <label for="female">User</label>
+      			  <input type="radio" name="gender" id="role_user" value="user">
                     <div class="hr">
                         <hr>
                     </div>
