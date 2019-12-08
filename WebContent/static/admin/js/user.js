@@ -140,6 +140,7 @@ fileInput.onchange = function() {
 }
 var checked = 0;
 async function insertUser() {
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
@@ -158,7 +159,7 @@ async function insertUser() {
             console.log(error)
         });
 
-    if (name !== "" && username !== "" && password !== "" && checked === 0) {
+    if (name !== "" && username !== "" && re.test(password) && checked === 0) {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
         var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
