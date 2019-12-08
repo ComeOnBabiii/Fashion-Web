@@ -15,28 +15,15 @@ import com.fashion.service.UserService;
 import com.fashion.service.impl.UserServiceImpl;
 
 
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet(urlPatterns = { "/admin/login" })
 public class LoginController extends HttpServlet {
-	UserService uImpl = new UserServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/login/login.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/login.jsp");
 		dispatcher.forward(req, resp);
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uname = req.getParameter("username");
-		String pass = req.getParameter("password");
-		
-		User user = uImpl.get(uname);
-		
-		if (user != null && user.getPassword().equals(pass)) {
-			//System.out.println("Thanh cong");		
-			resp.sendRedirect("/Fashion/view/login/log.jsp");
-		} else {
-			resp.sendRedirect("/Fashion/view/login/error.jsp");
-		}
-	}
+	
 }

@@ -1,4 +1,4 @@
-package com.fashion.controller.admin;
+package com.fashion.controller.login;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
-import java.util.List;
 import java.util.Map;
 
 import javax.crypto.Cipher;
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Hex;
+import org.json.JSONObject;
 
 import com.fashion.model.User;
 import com.fashion.service.UserService;
@@ -27,65 +27,24 @@ import com.fashion.service.impl.UserServiceImpl;
 import com.google.gson.Gson;
 
 import net.iharder.Base64;
-@WebServlet(urlPatterns= {"/getListUser/api/*"})
-public class UserApi extends HttpServlet {
+
+@WebServlet(urlPatterns = {"/login/api"})
+public class LoginApi extends HttpServlet{
+	
 	UserService userService = new UserServiceImpl();
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	//	setAccessControlHeaders(resp);
-		List<User> userList = userService.getAll();
-		
-		Gson gson= new Gson();
-		PrintWriter out= resp.getWriter();
-		out.print(gson.toJson(userList));
-		
-	}
-	
-//	private void setAccessControlHeaders(HttpServletResponse resp) {
-//	      resp.addHeader("Access-Control-Allow-Origin", "*");
-//	      resp.addHeader("Access-Control-Allow-Methods", "GET");
-////	      resp.addHeader("Access-Control-Allow-Methods", "POST");
-//	      resp.addHeader("Access-Control-Allow-Methods", "PUT");
-//	      resp.addHeader("Access-Control-Allow-Methods", "DELETE");
-//	  }
-	
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	//	setAccessControlHeaders(resp);
-		String pathInfo = req.getPathInfo();
-
-		if(resp == null || pathInfo.equals("/")){
-
-			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-
-		String[] splits = pathInfo.split("/");
-		
-		if(splits.length != 2) {
-			
-			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-
-		String modelId = splits[1];
-		userService.delete(Integer.parseInt(modelId));
-		
-		
-	}
-	
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User user = new User();
+		User user= new User();
 		Gson gson= new Gson();
 		Map map= req.getParameterMap();
+		PrintWriter out= resp.getWriter();
 		
-		//String name= String.valueOf(req.getParameter("name"));
-		//String username= String.valueOf(req.getParameter("username"));
 			StringBuilder buffer = new StringBuilder();
 		    BufferedReader reader = req.getReader();
 		    String line;
+		    
+		    
 		    while ((line = reader.readLine()) != null) {
 		        buffer.append(line);
 		    }
@@ -104,11 +63,20 @@ public class UserApi extends HttpServlet {
 		    	 } catch (Exception e) {
 		    	 e.printStackTrace();
 		    	 }
+		    String username= user.getUsername();
 		    String hash_pws= getSHAHash(pass);
-		   user.setPassword(hash_pws);
 		    
-		userService.insert(user);
-		//resp.sendRedirect("/Fashion/admin/user/list");
+		    User user_db= userService.get(username);
+		    
+		    JSONObject json = new JSONObject();
+		    
+		    if (user_db != null && user_db.getPassword().equals(hash_pws)) {
+		    	json.put("check", "OK");
+		    	out.print(json);
+		    }else {
+		    	json.put("check", "FAIL");
+		    	out.print(json);
+		    }
 	}
 	
 	public static String getSHAHash(String input) {
@@ -143,44 +111,5 @@ public class UserApi extends HttpServlet {
 		 throw new RuntimeException("This should not happen in production.", e);
 		 }
 		} 
-	
-	
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User user = new User();
-		Gson gson= new Gson();
-		
-		String pathInfo = req.getPathInfo();
 
-		if(resp == null || pathInfo.equals("/")){
-
-			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-
-		String[] splits = pathInfo.split("/");
-		
-		if(splits.length != 2) {
-			
-			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-
-		String modelId = splits[1];
-		
-		
-		//String name= String.valueOf(req.getParameter("name"));
-		//String username= String.valueOf(req.getParameter("username"));
-			StringBuilder buffer = new StringBuilder();
-		    BufferedReader reader = req.getReader();
-		    String line;
-		    while ((line = reader.readLine()) != null) {
-		        buffer.append(line);
-		    }
-		    
-		    String payload = buffer.toString();
-		    user = gson.fromJson(payload, User.class);
-		    user.setId(Integer.parseInt(modelId));
-		    userService.edit(user);
-	}
 }

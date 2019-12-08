@@ -11,6 +11,9 @@
     <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- phai co link phia duoi nay nhe -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    
 </head>
 
 <body>
@@ -62,7 +65,7 @@
                         <hr>
                     </div>
                     <label for="exampleInputRoll">Roll</label>
-                    <input name="roleAdmin" type="radio" value="ROLE_ADMIN">ADMIN
+                    <input id="roleAdmin" name="roleAdmin" type="radio" value="ROLE_ADMIN">ADMIN
                     <input name="role" type="radio" value="ROLE_USER">USER
                     <div class="hr">
                         <hr>
