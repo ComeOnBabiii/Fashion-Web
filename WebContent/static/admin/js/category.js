@@ -62,6 +62,7 @@ async function deleteObjectToServer(url, id) {
         console.error(`Error is : `);
     }
 }
+var checked = 0;
 
 function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
@@ -82,8 +83,25 @@ function refreshDataFromServer() {
                 tdDescription.innerHTML = `${category.description}`;
                 btnDelete.innerHTML = "Delete";
 
-                btnDelete.onclick = function() {
-                    deleteObjectToServer("http://localhost:8080/Fashion/getListCategory/api", category.id).then(document.location.reload(true));
+                btnDelete.onclick = async function() {
+                    await fetchGet("http://localhost:8080/Fashion/getListProduct/api")
+                        .then(products => {
+                            products.map((product) => {
+                                if ((category.id === product.category.id)) {
+                                    checked = -1;
+                                }
+                            })
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        });
+                    if (checked === 0) {
+                        deleteObjectToServer("http://localhost:8080/Fashion/getListCategory/api", category.id).then(document.location.reload(true));
+                    } else {
+                        alert("Conflict");
+                        checked = 0;
+                    }
+
                 };
 
                 btnEdit.innerHTML = "Edit";
