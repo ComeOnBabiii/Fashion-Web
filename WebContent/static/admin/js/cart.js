@@ -13,52 +13,49 @@ async function fetchGet(url) {
     }
 };
 
-async function insertObjectToServer(url, body) {
-    try {
-        var response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': url,
-            },
-            body: JSON.stringify(body)
+function refreshCartFromServer() {
+    const parent = document.getElementById('tbody');
+    fetchGet('http://localhost:8080/Fashion/cart/api')
+        .then(carts => {
+            carts.map((cart, index) => {
+                var idz = `${cart.id}`;
+                var child = createNode('tr');
+                var tdId = createNode('td');
+                var tdCustomer = createNode('td');
+                var tdDate = createNode('td');
+                var tdDetail = createNode('td');
+                var btnDetail = createNode('button');
+                tdId.innerHTML = index + 1;
+                tdCustomer.innerHTML = `${cart.buyer.username}`;
+                tdDate.innerHTML = `${cart.buyDate}`;
+                btnDetail.innerHTML = "Detail";
+                btnDetail.onclick = function() {
+                    alert(idz);
+                };
+
+                append(tdDetail, btnDetail);
+                append(child, tdId);
+                append(child, tdCustomer);
+                append(child, tdDate);
+                append(child, tdDetail);
+                append(parent, child);
+            })
+            console.log(users);
+        })
+        .catch(error => {
+            console.log(error)
         });
-        let responseJson = await response.json();
-        return responseJson.result;
-    } catch (error) {
-        console.error(`Error is : ${error}`);
-    }
+};
+
+
+window.addEventListener('load', function() {
+    refreshCartFromServer();
+}, false);
+
+function createNode(element) {
+    return document.createElement(element);
 }
 
-async function updateObjectToServer(url, body) {
-    try {
-        var response = await fetch(`${url}/${body.id}`, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        });
-        let responseJson = await response.json();
-        return responseJson.result;
-    } catch (error) {
-        console.error(`Error is : ${error}`);
-    }
-}
-async function deleteObjectToServer(url, id) {
-    try {
-        var response = await fetch(`${url}/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-        var responseJson = await response.json();
-        return responseJson.result;
-    } catch (error) {
-        console.error(`Error is : `);
-    }
+function append(parent, el) {
+    return parent.appendChild(el);
 }

@@ -46,7 +46,7 @@
                     <table id="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>No.</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Category</th>

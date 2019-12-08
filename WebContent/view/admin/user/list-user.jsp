@@ -46,10 +46,9 @@
                     <table id="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>No.</th>
                                 <th>Name</th>
                                 <th>Username</th>
-                                <th>Password</th>
                                 <th>Role</th>
                                 <th>Avatar</th>
                                 <th>Delete</th>

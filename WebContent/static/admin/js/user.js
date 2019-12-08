@@ -67,13 +67,12 @@ function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
     fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
-            users.map((user) => {
+            users.map((user, index) => {
                 var idz = `${user.id}`;
                 var child = createNode('tr');
                 var tdId = createNode('td');
                 var tdName = createNode('td');
                 var tdUsername = createNode('td');
-                var tdPass = createNode('td');
                 var tdRole = createNode('td');
                 var tdAvatar = createNode('td');
                 var imgAvatar = createNode('img');
@@ -83,10 +82,9 @@ function refreshDataFromServer() {
                 var tdEdit = createNode('td');
                 var btnDelete = createNode('button');
                 var btnEdit = createNode('button');
-                tdId.innerHTML = `${user.id}`;
+                tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${user.name}`;
                 tdUsername.innerHTML = `${user.username}`;
-                tdPass.innerHTML = `${user.password}`;
                 tdRole.innerHTML = `${user.rollAdmin}`;
 
                 btnDelete.innerHTML = "Delete";
@@ -104,7 +102,6 @@ function refreshDataFromServer() {
                 append(child, tdId);
                 append(child, tdName);
                 append(child, tdUsername);
-                append(child, tdPass);
                 append(child, tdRole);
                 append(child, tdAvatar);
                 append(child, tdDelete);
@@ -187,7 +184,7 @@ async function updateUser() {
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("roleAdmin").checked ? "admin" : "user";
-    
+
     if (name !== "" && username !== "" && password !== "") {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
@@ -198,7 +195,7 @@ async function updateUser() {
             id: id,
             name: name,
             username: username,
-           
+
             rollAdmin: rollAdmin,
             avatar: result
         }

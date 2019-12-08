@@ -46,7 +46,7 @@
                     <table id="table">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>No.</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Delete</th>
