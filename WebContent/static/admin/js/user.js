@@ -138,30 +138,46 @@ fileInput.onchange = function() {
         result = data;
     });
 }
-
+var checked = 0;
 async function insertUser() {
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("role_admin").checked;
     var rollRole = await document.getElementById("role_user").checked;
-    var role= rollAdmin===true? "admin" : "user"; 
-    
-    var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
-    var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
-    var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
-    var encrypted = CryptoJS.AES.encrypt(utf8Stringified.toString(), rkEncryptionKey, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7, iv: rkEncryptionIv });
-    password = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+    var role = rollAdmin === true ? "admin" : "user";
+    await fetchGet("http://localhost:8080/Fashion/getListUser/api")
+        .then(users => {
+            users.map((user) => {
+                if ((username === user.username)) {
+                    checked = -1;
+                }
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        });
 
-    var obj = {
-        name: name,
-        username: username,
-        password: password,
-        rollAdmin: role,
-        avatar: result
+    if (name !== "" && username !== "" && password !== "" && checked === 0) {
+        var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
+        var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
+        var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
+        var encrypted = CryptoJS.AES.encrypt(utf8Stringified.toString(), rkEncryptionKey, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7, iv: rkEncryptionIv });
+        password = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+
+        var obj = {
+            name: name,
+            username: username,
+            password: password,
+            rollAdmin: role,
+            avatar: result
+        }
+        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
+    } else {
+        alert("Invalid");
+        checked = 0;
     }
-    debugger;
-    await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
+
 }
 
 
@@ -171,17 +187,19 @@ async function updateUser() {
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
-
-    var obj = {
-        id: id,
-        name: name,
-        username: username,
-        password: password,
-        rollAdmin: rollAdmin,
-        avatar: result
+    if (name !== "" && username !== "" && password !== "") {
+        var obj = {
+            id: id,
+            name: name,
+            username: username,
+            password: password,
+            rollAdmin: rollAdmin,
+            avatar: result
+        }
+        updateObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
+    } else {
+        alert("Invalid")
     }
-    updateObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
-
 }
 
 function getBase64OfFile(file, callback) {
