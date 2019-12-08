@@ -14,9 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fashion.model.CartItem;
 import com.fashion.model.Product;
-import com.fashion.service.CategoryService;
 import com.fashion.service.ProductService;
-import com.fashion.service.impl.CategoryServiceImpl;
 import com.fashion.service.impl.ProductServiceImpl;
 import com.google.gson.Gson;
 @WebServlet(urlPatterns= {"/addToCart/api/*"})
@@ -82,4 +80,34 @@ public class AddToCartApi extends HttpServlet {
 			}
 	}
 	
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pathInfo = req.getPathInfo();
+
+		if(resp == null || pathInfo.equals("/")){
+
+			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			return;
+		}
+
+		String[] splits = pathInfo.split("/");
+		
+		if(splits.length != 2) {
+			
+			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+			return;
+		}
+
+		String modelId = splits[1];
+		
+		HttpSession httpSession = req.getSession();
+		Object obj = httpSession.getAttribute("cart");
+		
+		if (obj != null) {
+			Map<Integer, CartItem> map11 = (Map<Integer, CartItem>) httpSession.getAttribute("cart");
+			map11.remove(Integer.parseInt(modelId));
+			//map11.remove(Object(modelId));
+			httpSession.setAttribute("cart", map11);
+		}
+	}
 }

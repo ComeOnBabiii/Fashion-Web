@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Hex;
 import org.json.JSONObject;
@@ -73,14 +74,21 @@ public class LoginApi extends HttpServlet{
 		    if (user_db != null && user_db.getPassword().equals(hash_pws) && user_db.getRollAdmin().equals("admin")) {
 		    	json.put("check", "OK");
 		    	out.print(json);
+		    	HttpSession httpSession = req.getSession();
+		    	httpSession.setAttribute("user", user_db);
 		    }else if(user_db != null && user_db.getPassword().equals(hash_pws) && user_db.getRollAdmin().equals("user")) {
 		    	json.put("check", "OKClient");
 		    	out.print(json);
+		    	
+		    	HttpSession httpSession = req.getSession();
+		    	httpSession.setAttribute("user", user_db);
 		    }
 		    else {
 		    	json.put("check", "FAIL");
 		    	out.print(json);
 		    }
+		    
+		    
 	}
 	
 	public static String getSHAHash(String input) {
