@@ -73,7 +73,11 @@ public class LoginApi extends HttpServlet{
 		    if (user_db != null && user_db.getPassword().equals(hash_pws) && user_db.getRollAdmin().equals("admin")) {
 		    	json.put("check", "OK");
 		    	out.print(json);
-		    }else {
+		    }else if(user_db != null && user_db.getPassword().equals(hash_pws) && user_db.getRollAdmin().equals("user")) {
+		    	json.put("check", "OKClient");
+		    	out.print(json);
+		    }
+		    else {
 		    	json.put("check", "FAIL");
 		    	out.print(json);
 		    }
