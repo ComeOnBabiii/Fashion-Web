@@ -19,40 +19,35 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="#">
-                            <img src="images/logos/1.png" />
+                        <a href="#">                         
+                            <c:url value="/static/client/images/logos/1.png" var="bootstrap"></c:url>
+              				<img src="${bootstrap}" />
                         </a>
                     </div>
                     <div class="dropdown">
                         <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
-                        <div class="dropdown-content">
-                            <!-- <a href="#"><img src="./images/shopping-cart.png" /></a> -->
-                            <a href="#">PORTFOLIO</a>
-                            <a href="#">PAGE</a>
-                            <a href="#">MEGA MENU</a>
-                            <a href="#">SHOP</a>
+                        <div class="dropdown-content">                
+                            <a href="/Fashion/listcart" >
+                           		<c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
+              					<img src="${bootstrap}" />
+                            </a> 
+                            <a href="/Fashion/shop">SHOP</a>
+                            <a href="/Fashion/home">HOME</a>
                         </div>
                     </div>
 
-
-                    <div class="searh-icon option">
-                        <img src="./images/search-icon.png" />
-                    </div>
                     <div class="cart-icon option">
-                        <a href="#"><img src="./images/shopping-cart.png" /></a>
-                    </div>
-                    <div class="portfolio option">
-                        <a href="#">PORTFOLIO</a>
-                    </div>
-                    <div class="blog option">
-                        <a href="#">PAGE</a>
+                         <a href="/Fashion/listcart">
+                        <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
+              					<img src="${bootstrap}" />
+              					</a> 
                     </div>
                     <div class="mega menu option">
-                        <a href="#">MEGA MENU</a>
+                        <a href="/Fashion/shop">SHOP</a>
                     </div>
 
                     <div class="shop option">
-                        <a href="#">SHOP</a>
+                        <a href="/Fashion/home">HOME</a>
                     </div>
                 </div>
                 <div id="selector" class="selector">

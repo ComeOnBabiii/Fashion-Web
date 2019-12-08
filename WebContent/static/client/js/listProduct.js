@@ -20,7 +20,6 @@ function refreshProductFromServer() {
             products.map((product) => {
                 var child = createNode('div');
                 child.className = "product-image";
-                var childDivImage = createNode('div');
                 var imgProduct = createNode('img');
                 imgProduct.className = "img-product";
                 var childDivDes = createNode('div');
@@ -31,7 +30,10 @@ function refreshProductFromServer() {
 
                 imgProduct.src = `${product.image}`;
                 pName.innerHTML = `${product.name}`;
-                pPrice.innerHTML = `${product.price}`;
+                pPrice.innerHTML = `${product.price} $` ;
+                pName.className = "product-name";
+                pPrice.className = "product-price";
+                
                 btnAdd.innerHTML = "Add";
                 btnAdd.onclick = function() {
                 	var id = `${product.id}`;
@@ -40,13 +42,13 @@ function refreshProductFromServer() {
                 			id: id
                 	    }
                 	    insertObjectToServer(obj);
+                		alert("Success");
                 };
+                append(childDivDes, imgProduct);
                 append(childDivDes, btnAdd);
-                append(childDivDes, pPrice);
-                append(childDivDes, pName);
-                append(childDivImage, imgProduct);
+                append(childDivDes, pName);    
+                append(childDivDes, pPrice);                         
                 append(child, childDivDes);
-                append(child, childDivImage);
                 append(parent, child);
             })
         })
@@ -96,8 +98,7 @@ async function insertObjectToServer(obj) {
             body: JSON.stringify(obj)
         });
         let responseJson = await response.json();
-        return responseJson.result;
-
+        return responseJson.result;       
         //location.replace("http://localhost:8080/Fashion/admin/category/edit")
     } catch (error) {
         console.error(`Error is : ${error}`);
