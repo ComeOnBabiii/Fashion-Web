@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-      <script src="https://use.fontawesome.com/0cc436713d.js" crossorigin="anonymous"></script>
+      <script src="https://use.fontawesome.com/0cc436713d.js"></script>
 
  	<c:url value="/static/client/css/order.css" var="bootstrap"></c:url>
 	<link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
@@ -18,51 +18,48 @@
  <div class="container">
         <div class="navbar">
             <div class="logo">
-                <a href="#">
-                    <img src="images/logos/1.png" />
+                <a href="/Fashion/home">
+                    <c:url value="/static/client/images/logos/1.png" var="bootstrap"></c:url>
+              			<img src="${bootstrap}" />	
                 </a>
             </div>
-            <div class="dropdown">
-                <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
-                <div class="dropdown-content">
-                    <!-- <a href="#"><img src="./images/shopping-cart.png" /></a> -->
-                    <a href="#">PORTFOLIO</a>
-                    <a href="#">PAGE</a>
-                    <a href="#">MEGA MENU</a>
-                    <a href="#">SHOP</a>
-                </div>
-            </div>
+           <div class="dropdown">
+                        <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
+                        <div class="dropdown-content">                
+                            <a href="/Fashion/listcart" >
+                           		<c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
+              					<img src="${bootstrap}" />
+                            </a> 
+                            <a href="/Fashion/shop">SHOP</a>
+                            <a href="/Fashion/home">HOME</a>
+                        </div>
+                    </div>
 
-            <div class="searh-icon option">
-                <img src="./images/search-icon.png" />
+                        <div class="cart-icon option">
+                  <a href="/Fashion/listcart">
+                        <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
+              		<img src="${bootstrap}" />
+              		</a> 
             </div>
-            <div class="cart-icon option">
-                <a href="#"><img src="./images/shopping-cart.png" /></a>
-            </div>
-            <div class="portfolio option">
-                <a href="#">PORTFOLIO</a>
-            </div>
-            <div class="blog option">
-                <a href="#">PAGE</a>
-            </div>
-            <div class="mega menu option">
-                <a href="#">MEGA MENU</a>
-            </div>
+                    <div class="mega menu option">
+                        <a href="/Fashion/shop">SHOP</a>
+                    </div>
 
-            <div class="shop option">
-                <a href="#">SHOP</a>
-            </div>
+                    <div class="shop option">
+                        <a href="/Fashion/home">HOME</a>
+                    </div>
         </div>
         <div class="banner">
             <div class="cart-icon">
-                <img src="./images/shopping-cart.png" />
+                <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
+              		<img src="${bootstrap}" />
             </div>
             <div class="cart-text">
                 <h3>ORDER</h3>
             </div>
         </div>
         <div class="body">
-            <div class="login">RETURNING CUSTOMER <a href="#">CLICK HERE TO LOGIN</a></div>
+            <div class="login">RETURNING CUSTOMER <a href="/Fashion/client/login">CLICK HERE TO LOGIN</a></div>
             <div class="order">
                 <div class="billing order-block">
                     <h2>BILLING ADDRESS</h2>
@@ -124,7 +121,7 @@
                             </div>
                         </div>
                         <!-- <button class="submit" type="button" onclick="AddOrder()">ORDER</button> -->
-                        <input type="submit" class="button" >
+                        <input type="submit" class="payment-button" value="ORDER">
                     </form>
 
                 </div>
@@ -151,8 +148,8 @@
             </div>
             <div class="footer-content">
                 <h4>Stay Connected</h4>
-                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/"><p>Facebook<p></a>
+                <a href=""><p>Instagram<p></a>
 
             </div>
             <div class="footer-content">

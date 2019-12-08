@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Document</title>
-            <script src="https://use.fontawesome.com/0cc436713d.js" crossorigin="anonymous"></script>
+            <script src="https://use.fontawesome.com/0cc436713d.js"></script>
 
             <c:url value="/static/client/css/shop.css" var="bootstrap"></c:url>
             <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="#">                         
+                        <a href="/Fashion/home">                         
                             <c:url value="/static/client/images/logos/1.png" var="bootstrap"></c:url>
               				<img src="${bootstrap}" />
                         </a>
@@ -80,8 +80,8 @@
                     </div>
                     <div class="footer-content">
                         <h4>Stay Connected</h4>
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/"><p>Facebook<p></a>
+                <a href=""><p>Instagram<p></a>
 
                     </div>
                     <div class="footer-content">

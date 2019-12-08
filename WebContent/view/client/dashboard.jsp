@@ -17,13 +17,13 @@
  <div class="container">
         <div class="navbar">
             <div class="logo">
-                <a href="#">
+                <a href="/Fashion/home">
                     <c:url value="/static/client/images/logos/1.png" var="bootstrap"></c:url>
               					<img src="${bootstrap}" />
                 </a>
             </div>
                     <div class="dropdown">
-                        <div class="menu-icon dropbtn"><i class="fas fa-bars icon-3x"></i></div>
+                        <div class="menu-icon dropbtn"><i class="fas fa-bars"></i></i></div>
                         <div class="dropdown-content">                
                             <a href="/Fashion/listcart" >
                            		<c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
@@ -52,33 +52,8 @@
         <div class="banner">
              <c:url value="/static/client/images/slides/1.jpg" var="bootstrap"></c:url>
               		<img src="${bootstrap}" />
+              		<a href="/Fashion/shop"><button>SHOP NOW</button></a>
         </div>
-        <div class="NewArrival-Block">
-            <div class="new-arrival">
-                <h2>New Arrival</h2>
-            </div>
-            <div class="product-container">
-                <div class="product-image">
-                    <a href="/">                     <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-              		<img src="${bootstrap}" /></a>
-                </div>
-                <div class="product-image">
-                    <a href="/">                     <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-              		<img src="${bootstrap}" /></a>
-                </div>
-                <div class="product-image">
-                    <a href="/">
-                     <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-              		<img src="${bootstrap}" />
-                    </a>
-                </div>
-                <div class="product-image">
-                    <a href="/">                     <c:url value="/static/client/images/products/2.jpg" var="bootstrap"></c:url>
-              		<img src="${bootstrap}" /></a>
-                </div>
-            </div>
-        </div>
-
         <div class="middle-banner">
             <div class="middle-image">
                 <a>
@@ -111,8 +86,8 @@
             </div>
             <div class="footer-content">
                 <h4>Stay Connected</h4>
-                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
+               <a href="https://www.facebook.com/"><p>Facebook<p></a>
+                <a href=""><p>Instagram<p></a>
 
             </div>
             <div class="footer-content">

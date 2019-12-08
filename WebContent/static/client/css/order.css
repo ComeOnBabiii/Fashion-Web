@@ -168,6 +168,19 @@ th,tr,td{
     margin-bottom: 100px ;
     height: 80vh;
 }
+.payment-button{
+	width: 40%;
+    align-self: center;
+    padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid gray;
+	border-radius: 4px;
+}
+thead{
+	border : 1px solid black;
+}
+
 
 @media only screen and (min-width: 720px) {
 	.dropdown div {
