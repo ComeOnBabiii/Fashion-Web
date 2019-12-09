@@ -43,4 +43,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> search(String username) {
 		return productDao.search(username);
 	}
+
+	@Override
+	public List<Product> searchbycategoryid(int idcate) {	
+		return  productDao.searchbycategoryid(idcate);
+	}
 }

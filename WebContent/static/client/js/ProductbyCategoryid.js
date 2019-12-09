@@ -65,13 +65,9 @@ function refreshCategoryFromServer() {
             	var id = `${category.id}`;
                 var child = createNode('span');
                 var aName = createNode('a');
-                var bName = createNode('a');
                 aName.innerHTML = `${category.name}`;
-                aName.onclick = function() {
-                    alert(id);                  
-                }
+                aName.href = "/shop1?id="+id;
                 append(child, aName);
-                
                 append(parent, child);
             })
         })

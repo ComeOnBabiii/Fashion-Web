@@ -59,7 +59,7 @@ public class AddToCartApi extends HttpServlet {
 
 			} else {
 				Map<Integer, CartItem> mapcart = (Map<Integer, CartItem>) obj;
-				CartItem cartItem = mapcart.get(product.getId());
+				CartItem cartItem = mapcart.get(idproduct);
 				// 1: Chua co san pham trong gio hang
 				if (cartItem == null) {
 					CartItem cartItems = new CartItem();

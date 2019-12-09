@@ -18,4 +18,6 @@ public interface ProductService {
 	public List<Product> getAll();
 
 	public List<Product> search(String keyword);
+	
+	public List<Product> searchbycategoryid(int idcate);
 }

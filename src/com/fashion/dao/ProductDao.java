@@ -18,4 +18,6 @@ public interface ProductDao {
 	public List<Product> getAll();
 
 	public List<Product> search(String username);
+	
+	public List<Product> searchbycategoryid(int idcate);
 }

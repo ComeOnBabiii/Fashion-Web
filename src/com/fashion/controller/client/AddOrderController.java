@@ -3,6 +3,7 @@ package com.fashion.controller.client;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,26 +41,18 @@ public class AddOrderController extends HttpServlet {
 		cart.setBuyDate(new java.sql.Date(time));
 		// luu xuong database
 		cartService.insert(cart);
-		cart.getId();
 
-		
-		List<Cart> listc = cartService.getAll();
-		Cart cart1= new Cart();
-		cart1= listc.get(listc.size()-1);
-		
-		
-		///LUU SAN PHAM LAY TU SESSION DE LUU XUONG DATABASE
 		Object objCart = session.getAttribute("cart");
 		if (objCart != null) {
-		//ep ve dung kieu cua no khi them vao o phan them vao gio hang controller
 		Map<Integer, CartItem> map = (Map<Integer, CartItem>) objCart;
 
-		for (CartItem cartItem: map.values()) {
-		//moi cartitem thuoc ve 1 don hang.
-		// can set cart vao day
-		cartItem.setCart(cart1);
-		//luu database
-		cartItemService.insert(cartItem);
+		for(Entry<Integer, CartItem> entry : map.entrySet()) {
+			CartItem cartItem = entry.getValue();	
+			List<Cart> listc = cartService.getAll();
+			Cart cart1= new Cart();
+			cart1= listc.get(listc.size()-1);
+			cartItem.setCart(cart1);
+			cartItemService.insert(cartItem);
 		}
 
 		}

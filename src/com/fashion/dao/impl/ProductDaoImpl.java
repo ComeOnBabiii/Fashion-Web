@@ -194,4 +194,37 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 		return products;
 	}
 
+	@Override
+	public List<Product> searchbycategoryid(int id) {
+		List<Product> products = new ArrayList<Product>();
+		String sql = "SELECT * FROM product WHERE idcate = ? ";
+		Connection conn = super.getConnection();
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Product product = new Product();
+
+				product.setId(rs.getInt("idpro"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getDouble("price"));
+				product.setImage(rs.getString("image"));
+
+				Category category = new Category();
+				category.setId(rs.getInt("idcate"));
+				product.setCategory(category);
+
+				products.add(product);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return products;
+	}
+
 }
