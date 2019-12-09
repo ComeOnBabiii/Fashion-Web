@@ -62,13 +62,12 @@ async function deleteObjectToServer(url, id) {
         console.error(`Error is : `);
     }
 }
-var userFil;
+var userFil = [];
 
 function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
     fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
-            userFil = users;
             users.map((user, index) => {
                 var idz = `${user.id}`;
                 var child = createNode('tr');
@@ -116,10 +115,64 @@ function refreshDataFromServer() {
         });
 };
 
-window.addEventListener('load', function() {
-    refreshDataFromServer();
-    console.log(userFil);
-    debugger;
+window.addEventListener('load', async function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var keyword = urlParams.get("q");
+    await fetchGet("http://localhost:8080/Fashion/getListUser/api")
+        .then(users => {
+            users.map((user) => {
+                userFil.push(user);
+            })
+        });
+    if (keyword) {
+        var filter = userFil.filter(user => {
+            return user.username.indexOf(keyword) !== -1;
+        });
+        const parent = document.getElementById('tbody');
+        filter.forEach((user, index) => {
+            var idz = `${user.id}`;
+            var child = createNode('tr');
+            var tdId = createNode('td');
+            var tdName = createNode('td');
+            var tdUsername = createNode('td');
+            var tdRole = createNode('td');
+            var tdAvatar = createNode('td');
+            var imgAvatar = createNode('img');
+            imgAvatar.className = "user-image";
+            imgAvatar.src = `${user.avatar}`;
+            var tdDelete = createNode('td');
+            var tdEdit = createNode('td');
+            var btnDelete = createNode('button');
+            var btnEdit = createNode('button');
+            tdId.innerHTML = index + 1;
+            tdName.innerHTML = `${user.name}`;
+            tdUsername.innerHTML = `${user.username}`;
+            tdRole.innerHTML = `${user.rollAdmin}`;
+
+            btnDelete.innerHTML = "Delete";
+            btnDelete.onclick = function() {
+                deleteObjectToServer("http://localhost:8080/Fashion/getListUser/api", user.id).then(document.location.reload(true));
+            };
+            btnEdit.innerHTML = "Edit";
+            btnEdit.onclick = function() {
+                location.replace("http://localhost:8080/Fashion/admin/user/edit?id=" + idz)
+            };
+
+            append(tdEdit, btnEdit);
+            append(tdAvatar, imgAvatar);
+            append(tdDelete, btnDelete);
+            append(child, tdId);
+            append(child, tdName);
+            append(child, tdUsername);
+            append(child, tdRole);
+            append(child, tdAvatar);
+            append(child, tdDelete);
+            append(child, tdEdit);
+            append(parent, child);
+        });
+    } else {
+        refreshDataFromServer();
+    }
 }, false);
 
 function createNode(element) {
@@ -175,12 +228,11 @@ async function insertUser() {
         }
         await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
-        alert("Invalid username");
+        alert("Invalid user");
         checked = 0;
     }
 
 }
-
 
 async function updateUser() {
     var id = await document.getElementById("idInput").value;
@@ -217,4 +269,56 @@ function getBase64OfFile(file, callback) {
         }
     });
     fr.readAsDataURL(file);
+}
+
+function search() {
+    var keyword = document.getElementById("searchBar").value;
+    var filter = userFil.filter(user => {
+        return user.username.indexOf(keyword) !== -1;
+    });
+    // const parent = document.getElementById('tbody');
+    // filter.map((user, index) => {
+    //     var idz = `${user.id}`;
+    //     var child = createNode('tr');
+    //     var tdId = createNode('td');
+    //     var tdName = createNode('td');
+    //     var tdUsername = createNode('td');
+    //     var tdRole = createNode('td');
+    //     var tdAvatar = createNode('td');
+    //     var imgAvatar = createNode('img');
+    //     imgAvatar.className = "user-image";
+    //     imgAvatar.src = `${user.avatar}`;
+    //     var tdDelete = createNode('td');
+    //     var tdEdit = createNode('td');
+    //     var btnDelete = createNode('button');
+    //     var btnEdit = createNode('button');
+    //     tdId.innerHTML = index + 1;
+    //     tdName.innerHTML = `${user.name}`;
+    //     tdUsername.innerHTML = `${user.username}`;
+    //     tdRole.innerHTML = `${user.rollAdmin}`;
+
+    //     btnDelete.innerHTML = "Delete";
+    //     btnDelete.onclick = function() {
+    //         deleteObjectToServer("http://localhost:8080/Fashion/getListUser/api", user.id).then(document.location.reload(true));
+    //     };
+    //     btnEdit.innerHTML = "Edit";
+    //     btnEdit.onclick = function() {
+    //         location.replace("http://localhost:8080/Fashion/admin/user/edit?id=" + idz)
+    //     };
+
+    //     append(tdEdit, btnEdit);
+    //     append(tdAvatar, imgAvatar);
+    //     append(tdDelete, btnDelete);
+    //     append(child, tdId);
+    //     append(child, tdName);
+    //     append(child, tdUsername);
+    //     append(child, tdRole);
+    //     append(child, tdAvatar);
+    //     append(child, tdDelete);
+    //     append(child, tdEdit);
+    //     append(parent, child);
+    // })
+    console.log("Fil:", filter);
+    debugger;
+    return false;
 }
