@@ -52,6 +52,8 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
                                         <th>Username</th>
                                         <th>Role</th>
                                         <th>Avatar</th>

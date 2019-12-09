@@ -73,6 +73,8 @@ function refreshDataFromServer() {
                 var child = createNode('tr');
                 var tdId = createNode('td');
                 var tdName = createNode('td');
+                var tdPhone = createNode('td');
+                var tdAddress = createNode('td');
                 var tdUsername = createNode('td');
                 var tdRole = createNode('td');
                 var tdAvatar = createNode('td');
@@ -85,6 +87,8 @@ function refreshDataFromServer() {
                 var btnEdit = createNode('button');
                 tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${user.name}`;
+                tdPhone.innerHTML =`${user.phone}`;
+                tdAddress.innerHTML =`${user.address}`;
                 tdUsername.innerHTML = `${user.username}`;
                 tdRole.innerHTML = `${user.rollAdmin}`;
 
@@ -102,6 +106,8 @@ function refreshDataFromServer() {
                 append(tdDelete, btnDelete);
                 append(child, tdId);
                 append(child, tdName);
+                append(child, tdPhone);
+                append(child, tdAddress);
                 append(child, tdUsername);
                 append(child, tdRole);
                 append(child, tdAvatar);
@@ -152,6 +158,8 @@ window.addEventListener('load', async function() {
             var child = createNode('tr');
             var tdId = createNode('td');
             var tdName = createNode('td');
+            var tdPhone = createNode('td');
+            var tdAddress = createNode('td');
             var tdUsername = createNode('td');
             var tdRole = createNode('td');
             var tdAvatar = createNode('td');
@@ -164,6 +172,8 @@ window.addEventListener('load', async function() {
             var btnEdit = createNode('button');
             tdId.innerHTML = index + 1;
             tdName.innerHTML = `${user.name}`;
+            tdPhone.innerHTML =`${user.phone}`;
+            tdAddress.innerHTML =`${user.address}`;
             tdUsername.innerHTML = `${user.username}`;
             tdRole.innerHTML = `${user.rollAdmin}`;
 
@@ -181,6 +191,8 @@ window.addEventListener('load', async function() {
             append(tdDelete, btnDelete);
             append(child, tdId);
             append(child, tdName);
+            append(child, tdPhone);
+            append(child, tdAddress);
             append(child, tdUsername);
             append(child, tdRole);
             append(child, tdAvatar);
@@ -213,8 +225,11 @@ var checked = 0;
 async function insertUser() {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     var name = await document.getElementById("nameInput").value;
+    var phone = await document.getElementById("phoneInput").value;
+    var address = await document.getElementById("addressInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
+    
     var rollAdmin = await document.getElementById("role_admin").checked;
     var rollRole = await document.getElementById("role_user").checked;
     var role = rollAdmin === true ? "admin" : "user";

@@ -54,6 +54,16 @@
                             <div class="hr">
                                 <hr>
                             </div>
+                                                        <label >Phone</label>
+                            <input id="phoneInput" type="text" name="phone" class="lock">
+                            <div class="hr">
+                                <hr>
+                            </div>
+                                                        <label >Address</label>
+                            <input id="addressInput" type="text" name="address" class="lock">
+                            <div class="hr">
+                                <hr>
+                            </div>
                             <label for="exampleInputUsername">Username</label>
                             <input id="usernameInput" type="text" name="username" required="">
                             <div class="hr">
@@ -70,6 +80,8 @@
                             <div class="hr">
                                 <hr>
                             </div>
+
+
                             <label for="exampleInputAvatar">Avatar</label>
                             <input id="avtInput" type="file" name="avatar"> </br>
                             <input type="button" name="addUser" id="submit" value="Submit" onclick="insertUser()"> </br>

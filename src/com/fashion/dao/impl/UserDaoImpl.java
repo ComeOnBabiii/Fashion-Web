@@ -15,7 +15,7 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO user(name, username, password,avatar,roll) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO user(name, username, password,avatar,roll,address,phone) VALUES (?,?,?,?,?,?,?)";
 		Connection con = super.getConnection();
 
 		try {
@@ -25,6 +25,8 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 			ps.setString(3, user.getPassword());
 			ps.setString(4, user.getAvatar());
 			ps.setString(5, user.getRollAdmin());
+			ps.setString(6, user.getAddress());
+			ps.setString(7, user.getPhone());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -33,7 +35,7 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 
 	@Override
 	public void edit(User user) {
-		String sql = "UPDATE user SET name = ? , username = ?,avatar = ?, roll = ? WHERE id = ?";
+		String sql = "UPDATE user SET name = ? , username = ?,avatar = ?, roll = ?, address=?, phone=? WHERE id = ?";
 		Connection con = super.getConnection();
 
 		try {
@@ -43,7 +45,9 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 			//ps.setString(3, user.getPassword());
 			ps.setString(3, user.getAvatar());
 			ps.setString(4, user.getRollAdmin());
-			ps.setInt(5, user.getId());
+			ps.setString(5, user.getAddress());
+			ps.setString(6, user.getPhone());
+			ps.setInt(7, user.getId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,7 +89,8 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setRollAdmin(rs.getString("roll"));
 				user.setAvatar(rs.getString("avatar"));
-
+				user.setAddress(rs.getString("address"));
+				user.setPhone(rs.getString("phone"));	
 				return user;
 
 			}
@@ -115,7 +120,10 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setAvatar(rs.getString("avatar"));
 				user.setRollAdmin(rs.getString("roll"));
-
+				user.setAvatar(rs.getString("avatar"));
+				user.setAddress(rs.getString("address"));
+				user.setPhone(rs.getString("phone"));
+				
 				return user;
 
 			}
@@ -146,7 +154,10 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setAvatar(rs.getString("avatar"));
 				user.setRollAdmin(rs.getString("roll"));
-
+				user.setAvatar(rs.getString("avatar"));
+				user.setAddress(rs.getString("address"));
+				user.setPhone(rs.getString("phone"));
+				
 				userList.add(user);
 			}
 
@@ -178,7 +189,10 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setAvatar(rs.getString("avatar"));
 				user.setRollAdmin(rs.getString("roll"));
-
+				user.setAvatar(rs.getString("avatar"));
+				user.setAddress(rs.getString("address"));
+				user.setPhone(rs.getString("phone"));
+				
 				userList.add(user);
 			}
 

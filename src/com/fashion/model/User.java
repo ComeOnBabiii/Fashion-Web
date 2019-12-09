@@ -9,11 +9,29 @@ public class User implements Serializable {
 	private String password;
 	private String rollAdmin;
 	private String avatar;
+	private String address;
+	private String phone;
 	//private String activeYN;
 	
 
 	public String getRollAdmin() {
 		return rollAdmin;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setRollAdmin(String rollAdmin) {
