@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Product List</title>
+    <title>Cart List</title>
     <c:url value="/static/admin/css/admin.css" var="bootstrap"></c:url>
     <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
 

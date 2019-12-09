@@ -187,19 +187,8 @@ async function updateUser() {
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
-    await fetchGet("http://localhost:8080/Fashion/getListUser/api")
-        .then(users => {
-            users.map((user) => {
-                if ((username === user.username)) {
-                    checked = -1;
-                }
-            })
-        })
-        .catch(error => {
-            console.log(error)
-        });
-
-    if (name !== "" && username !== "" && password !== "" && checked === 0) {
+    
+    if (name !== "" && username !== "" && password !== "") {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
         var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
@@ -209,14 +198,13 @@ async function updateUser() {
             id: id,
             name: name,
             username: username,
-            password: password,
+           
             rollAdmin: rollAdmin,
             avatar: result
         }
         updateObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
         alert("Invalid username");
-        checked = 0;
     }
 }
 

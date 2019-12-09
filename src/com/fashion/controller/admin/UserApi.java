@@ -171,16 +171,31 @@ public class UserApi extends HttpServlet {
 		
 		//String name= String.valueOf(req.getParameter("name"));
 		//String username= String.valueOf(req.getParameter("username"));
-			StringBuilder buffer = new StringBuilder();
-		    BufferedReader reader = req.getReader();
-		    String line;
-		    while ((line = reader.readLine()) != null) {
-		        buffer.append(line);
-		    }
-		    
-		    String payload = buffer.toString();
-		    user = gson.fromJson(payload, User.class);
-		    user.setId(Integer.parseInt(modelId));
-		    userService.edit(user);
+		StringBuilder buffer = new StringBuilder();
+	    BufferedReader reader = req.getReader();
+	    String line;
+	    while ((line = reader.readLine()) != null) {
+	        buffer.append(line);
+	    }
+	    
+	    String payload = buffer.toString();
+	    user = gson.fromJson(payload, User.class);
+	    
+	    String pwd= user.getPassword();
+	    String pass="";
+	    try {
+	    	 String afterDecrypt = decrypt(pwd);
+	    	 
+	    	 byte[] bytes = Hex.decodeHex(afterDecrypt.toCharArray());
+	    	  pass= new String(bytes, "UTF-8");
+	    	
+	    	 } catch (Exception e) {
+	    	 e.printStackTrace();
+	    	 }
+	    String hash_pws= getSHAHash(pass);
+	    user.setPassword(hash_pws);
+
+		user.setId(Integer.parseInt(modelId));
+		userService.edit(user);
 	}
 }

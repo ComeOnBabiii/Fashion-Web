@@ -11,6 +11,8 @@
     <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- phai co link phia duoi nay nhe -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 </head>
 
 <body>

@@ -16,8 +16,8 @@ public class CartItemServiceImpl implements CartItemService {
 	//CartDao cartDao = new CartDaoImpl();
 	CartItemDao cartItemDao = new CartItemDaoImpl();
 	@Override
-	public List<CartItem> search(String name) {
-		return cartItemDao.search(name);
+	public List<CartItem> search(int cart_id) {
+		return cartItemDao.search(cart_id);
 	}
 
 	@Override

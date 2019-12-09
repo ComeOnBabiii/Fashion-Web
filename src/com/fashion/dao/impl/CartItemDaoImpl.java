@@ -188,8 +188,53 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 		return cartItemList;
 	}
 
-	public List<CartItem> search(String name) {
-		return null;
+	public List<CartItem> search(int cart_id) {
+		List<CartItem> cartItemList = new ArrayList<CartItem>();
+		String sql = "SELECT " + 
+				"cart_item.id, " + 
+				"cart_item.quantity, " + 
+				"cart_item.unit_price, " + 
+				"cart.id_user, " + 
+				"cart.buy_date, " + 
+				"product.name, " + 
+				"product.price " + 
+				"FROM cart_item " + 
+				"INNER JOIN cart " + 
+				"ON cart_item.id_cart = cart.id " + 
+				"INNER JOIN product " + 
+				"ON cart_item.id_product = product.id WHERE cart_item.id= ?";
+		Connection con = super.getConnection();
+
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, cart_id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				User user = userDao.get(rs.getInt("id_user"));
+				
+				Cart cart = new Cart();
+				cart.setBuyer(user);
+				cart.setBuyDate(rs.getDate("buy_date"));
+				
+				Product product = new Product();
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getDouble("price"));
+				
+				CartItem cartItem = new CartItem();
+				cartItem.setCart(cart);
+				cartItem.setProduct(product);
+				cartItem.setQuantity(rs.getInt("quantity"));
+				cartItem.setUnitPrice(rs.getDouble("unit_price"));
+
+				cartItemList.add(cartItem);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cartItemList;
 	}
 
 	@Override
@@ -197,5 +242,5 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }
