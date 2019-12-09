@@ -19,7 +19,7 @@
         <body>
             <div class="container">
                 <div class="navbar">
-                    <a href="#home">ComeOnBabiii</a>
+                    <a href="#home">Admin</a>
                     <div class="dropdown">
                         <button class="dropbtn">Xin chào ${user.name} !
                     <i class="fa fa-caret-down"></i>
@@ -54,12 +54,12 @@
                             <div class="hr">
                                 <hr>
                             </div>
-                                                        <label >Phone</label>
+                            <label>Phone</label>
                             <input id="phoneInput" type="text" name="phone" class="lock">
                             <div class="hr">
                                 <hr>
                             </div>
-                                                        <label >Address</label>
+                            <label>Address</label>
                             <input id="addressInput" type="text" name="address" class="lock">
                             <div class="hr">
                                 <hr>

@@ -87,8 +87,8 @@ function refreshDataFromServer() {
                 var btnEdit = createNode('button');
                 tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${user.name}`;
-                tdPhone.innerHTML =`${user.phone}`;
-                tdAddress.innerHTML =`${user.address}`;
+                tdPhone.innerHTML = `${user.phone}`;
+                tdAddress.innerHTML = `${user.address}`;
                 tdUsername.innerHTML = `${user.username}`;
                 tdRole.innerHTML = `${user.rollAdmin}`;
 
@@ -172,8 +172,8 @@ window.addEventListener('load', async function() {
             var btnEdit = createNode('button');
             tdId.innerHTML = index + 1;
             tdName.innerHTML = `${user.name}`;
-            tdPhone.innerHTML =`${user.phone}`;
-            tdAddress.innerHTML =`${user.address}`;
+            tdPhone.innerHTML = `${user.phone}`;
+            tdAddress.innerHTML = `${user.address}`;
             tdUsername.innerHTML = `${user.username}`;
             tdRole.innerHTML = `${user.rollAdmin}`;
 
@@ -229,7 +229,7 @@ async function insertUser() {
     var address = await document.getElementById("addressInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
-    
+
     var rollAdmin = await document.getElementById("role_admin").checked;
     var rollRole = await document.getElementById("role_user").checked;
     var role = rollAdmin === true ? "admin" : "user";
@@ -257,7 +257,9 @@ async function insertUser() {
             username: username,
             password: password,
             rollAdmin: role,
-            avatar: result
+            avatar: result,
+            address: address,
+            phone: phone
         }
         await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {

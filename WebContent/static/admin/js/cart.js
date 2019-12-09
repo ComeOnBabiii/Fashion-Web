@@ -22,11 +22,15 @@ function refreshCartFromServer() {
                 var child = createNode('tr');
                 var tdId = createNode('td');
                 var tdCustomer = createNode('td');
+                var tdCustomerAdd = createNode('td');
+                var tdCustomerPhone = createNode('td');
                 var tdDate = createNode('td');
                 var tdDetail = createNode('td');
                 var btnDetail = createNode('button');
                 tdId.innerHTML = index + 1;
                 tdCustomer.innerHTML = `${cart.buyer.username}`;
+                tdCustomerAdd.innerHTML = `${cart.buyer.address}`;
+                tdCustomerPhone.innerHTML = `${cart.buyer.phone}`;
                 tdDate.innerHTML = `${cart.buyDate}`;
                 btnDetail.innerHTML = "Detail";
                 btnDetail.onclick = function() {
@@ -36,6 +40,8 @@ function refreshCartFromServer() {
                 append(tdDetail, btnDetail);
                 append(child, tdId);
                 append(child, tdCustomer);
+                append(child, tdCustomerAdd);
+                append(child, tdCustomerPhone);
                 append(child, tdDate);
                 append(child, tdDetail);
                 append(parent, child);

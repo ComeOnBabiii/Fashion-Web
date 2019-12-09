@@ -15,7 +15,7 @@
 <body>
             		<div class="container">
     			<div class="navbar">
-            <a href="#home">ComeOnBabiii</a>
+            <a href="#home">Admin</a>
             <div class="dropdown">
                 <button class="dropbtn">User
                     <i class="fa fa-caret-down"></i>
