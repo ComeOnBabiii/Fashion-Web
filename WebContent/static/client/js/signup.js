@@ -50,7 +50,6 @@ fileInput.onchange = function() {
     });
 }
 
-
 var checked = 0;
 async function insertUser() {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -59,6 +58,8 @@ async function insertUser() {
     var address = await document.getElementById("addressInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
+
+    var role = "user";
     await fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
             users.map((user) => {
@@ -67,10 +68,6 @@ async function insertUser() {
                 }
             })
         })
-        .catch(error => {
-            console.log(error)
-        });
-
     if (name !== "" && username !== "" && re.test(password) && checked === 0) {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
@@ -82,14 +79,15 @@ async function insertUser() {
             name: name,
             username: username,
             password: password,
-            rollAdmin: "user",
+            rollAdmin: role,
             avatar: result,
             address: address,
             phone: phone
         }
-        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/login"));
+        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
         alert("Invalid user");
+        debugger;
         checked = 0;
     }
 }
