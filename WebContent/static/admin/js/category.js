@@ -124,9 +124,75 @@ function refreshDataFromServer() {
         });
 };
 
+var categoryFil = [];
+window.addEventListener('load', async function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var keyword = urlParams.get("q");
+    await fetchGet("http://localhost:8080/Fashion/getListCategory/api")
+        .then(categories => {
+            categories.map((category) => {
+                categoryFil.push(category);
+            })
+        });
 
-window.addEventListener('load', function() {
-    refreshDataFromServer();
+    if (keyword) {
+        var filter = categoryFil.filter(category => {
+            return category.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+        });
+        const parent = document.getElementById('tbody');
+        filter.forEach((category, index) => {
+            var idz = `${category.id}`;
+            var child = createNode('tr');
+            var tdId = createNode('td');
+            var tdName = createNode('td');
+            var tdDescription = createNode('td');
+            var tdDelete = createNode('td');
+            var tdEdit = createNode('td');
+            var btnDelete = createNode('button');
+            var btnEdit = createNode('button');
+            tdId.innerHTML = index + 1;
+            tdName.innerHTML = `${category.name}`;
+            tdDescription.innerHTML = `${category.description}`;
+            btnDelete.innerHTML = "Delete";
+
+            btnDelete.onclick = async function() {
+                await fetchGet("http://localhost:8080/Fashion/getListProduct/api")
+                    .then(products => {
+                        products.map((product) => {
+                            if ((category.id === product.category.id)) {
+                                checked = -1;
+                            }
+                        })
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                if (checked === 0) {
+                    deleteObjectToServer("http://localhost:8080/Fashion/getListCategory/api", category.id).then(document.location.reload(true));
+                } else {
+                    alert("Conflict");
+                    checked = 0;
+                }
+
+            };
+
+            btnEdit.innerHTML = "Edit";
+            btnEdit.onclick = function() {
+                location.replace("http://localhost:8080/Fashion/admin/category/edit?id=" + idz)
+            };
+
+            append(tdEdit, btnEdit);
+            append(tdDelete, btnDelete);
+            append(child, tdId);
+            append(child, tdName);
+            append(child, tdDescription);
+            append(child, tdDelete);
+            append(child, tdEdit);
+            append(parent, child);
+        });
+    } else {
+        refreshDataFromServer();
+    }
 }, false);
 
 function createNode(element) {

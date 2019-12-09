@@ -114,8 +114,65 @@ function refreshDataFromServer() {
 };
 
 
-window.addEventListener('load', function() {
-    refreshDataFromServer();
+var productFil = [];
+window.addEventListener('load', async function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var keyword = urlParams.get("q");
+    await fetchGet("http://localhost:8080/Fashion/getListProduct/api")
+        .then(products => {
+            products.map((product) => {
+                productFil.push(product);
+            })
+        });
+
+    if (keyword) {
+        var filter = productFil.filter(product => {
+            return product.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+        });
+        const parent = document.getElementById('tbody');
+        filter.forEach((product, index) => {
+            var idz = `${product.id}`;
+            var child = createNode('tr');
+            var tdId = createNode('td');
+            var tdName = createNode('td');
+            var tdPrice = createNode('td');
+            var tdCategory = createNode('td');
+            var tdImage = createNode('td');
+            var img = createNode('img');
+            img.className = "product-image";
+            img.src = `${product.image}`;
+            var tdDelete = createNode('td');
+            var tdEdit = createNode('td');
+            var btnDelete = createNode('button');
+            var btnEdit = createNode('button');
+            tdId.innerHTML = index + 1;
+            tdName.innerHTML = `${product.name}`;
+            tdPrice.innerHTML = `${product.price}`;
+            tdCategory.innerHTML = `${product.category.id}`;
+            btnDelete.innerHTML = "Delete";
+            btnDelete.onclick = function() {
+                deleteObjectToServer('http://localhost:8080/Fashion/getListProduct/api', product.id).then(document.location.reload(true));
+            };
+            btnEdit.innerHTML = "Edit";
+            btnEdit.onclick = function() {
+                location.replace("http://localhost:8080/Fashion/admin/product/edit?id=" + idz)
+            };
+
+            append(tdImage, img);
+            append(tdEdit, btnEdit);
+            append(tdDelete, btnDelete);
+            append(child, tdId);
+            append(child, tdName);
+            append(child, tdPrice);
+            append(child, tdCategory);
+            append(child, tdImage);
+            append(child, tdDelete);
+            append(child, tdEdit);
+            append(parent, child);
+        });
+    } else {
+        refreshDataFromServer();
+    }
 }, false);
 
 function createNode(element) {

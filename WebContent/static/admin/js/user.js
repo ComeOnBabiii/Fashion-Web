@@ -126,7 +126,7 @@ window.addEventListener('load', async function() {
         });
     if (keyword) {
         var filter = userFil.filter(user => {
-            return user.username.indexOf(keyword) !== -1;
+            return user.username.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
         });
         const parent = document.getElementById('tbody');
         filter.forEach((user, index) => {
@@ -269,56 +269,4 @@ function getBase64OfFile(file, callback) {
         }
     });
     fr.readAsDataURL(file);
-}
-
-function search() {
-    var keyword = document.getElementById("searchBar").value;
-    var filter = userFil.filter(user => {
-        return user.username.indexOf(keyword) !== -1;
-    });
-    // const parent = document.getElementById('tbody');
-    // filter.map((user, index) => {
-    //     var idz = `${user.id}`;
-    //     var child = createNode('tr');
-    //     var tdId = createNode('td');
-    //     var tdName = createNode('td');
-    //     var tdUsername = createNode('td');
-    //     var tdRole = createNode('td');
-    //     var tdAvatar = createNode('td');
-    //     var imgAvatar = createNode('img');
-    //     imgAvatar.className = "user-image";
-    //     imgAvatar.src = `${user.avatar}`;
-    //     var tdDelete = createNode('td');
-    //     var tdEdit = createNode('td');
-    //     var btnDelete = createNode('button');
-    //     var btnEdit = createNode('button');
-    //     tdId.innerHTML = index + 1;
-    //     tdName.innerHTML = `${user.name}`;
-    //     tdUsername.innerHTML = `${user.username}`;
-    //     tdRole.innerHTML = `${user.rollAdmin}`;
-
-    //     btnDelete.innerHTML = "Delete";
-    //     btnDelete.onclick = function() {
-    //         deleteObjectToServer("http://localhost:8080/Fashion/getListUser/api", user.id).then(document.location.reload(true));
-    //     };
-    //     btnEdit.innerHTML = "Edit";
-    //     btnEdit.onclick = function() {
-    //         location.replace("http://localhost:8080/Fashion/admin/user/edit?id=" + idz)
-    //     };
-
-    //     append(tdEdit, btnEdit);
-    //     append(tdAvatar, imgAvatar);
-    //     append(tdDelete, btnDelete);
-    //     append(child, tdId);
-    //     append(child, tdName);
-    //     append(child, tdUsername);
-    //     append(child, tdRole);
-    //     append(child, tdAvatar);
-    //     append(child, tdDelete);
-    //     append(child, tdEdit);
-    //     append(parent, child);
-    // })
-    console.log("Fil:", filter);
-    debugger;
-    return false;
 }
