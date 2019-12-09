@@ -117,6 +117,24 @@ function refreshDataFromServer() {
 
 window.addEventListener('load', async function() {
     var urlParams = new URLSearchParams(window.location.search);
+    var idUser = urlParams.get("id");
+    if (idUser) {
+        await fetchGet(`http://localhost:8080/Fashion/getUserById/api/${idUser}`)
+            .then(user => {
+                document.getElementById("idInput").value = user.id;
+                document.getElementById("nameInput").value = user.name;
+                document.getElementById("usernameInput").value = user.username;
+                document.getElementById("imgOutput").src = user.avatar;
+                if (user.rollAdmin === "admin") {
+                    document.getElementById("role_admin").setAttribute("checked", true);
+                } else {
+                    document.getElementById("role_user").setAttribute("checked", true);
+                }
+                result = user.avatar;
+            })
+    }
+
+    var urlParams = new URLSearchParams(window.location.search);
     var keyword = urlParams.get("q");
     await fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
@@ -239,7 +257,7 @@ async function updateUser() {
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
-    var rollAdmin = await document.getElementById("roleAdmin").checked ? "admin" : "user";
+    var rollAdmin = await document.getElementById("role_admin").checked ? "admin" : "user";
 
     if (name !== "" && username !== "" && password !== "") {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');

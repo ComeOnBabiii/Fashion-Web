@@ -46,21 +46,21 @@
                             <hr>
                         </div>
                         <form method="post" id="ha">
-                            <input id="idInput" type="hidden" value="${product.id}">
+                            <input id="idInput" type="hidden" value="">
                             <label>Name</label>
-                            <input id="nameInput" type="text" name="name" required="" value="${product.name}">
+                            <input id="nameInput" type="text" name="name" required="" value="">
                             <div class="hr">
                                 <hr>
                             </div>
                             <label>Price</label>
-                            <input id="priceInput" type="text" name="price" required="" value="${product.price}">
+                            <input id="priceInput" type="text" name="price" required="" value="">
                             <div class="hr">
                                 <hr>
                             </div>
                             <label>Category</label>
-                            <select id="categoryInput" name="category" title="${product.category.id}">
+                            <select id="categoryInput" name="category" title="">
 							<c:forEach items="${categories}" var="c">
-								<option value="${c.id}">${c.id}</option>
+								<option id="categoryId" value="${c.id}" label="${c.name}"></option>
 							</c:forEach>
 					</select>
                             <div class="hr">
@@ -68,7 +68,7 @@
                             </div>
                             <label>Image product</label>
                             <input id="imgInput" type="file" name="image"> </br>
-
+                            <img id="imgOutput" src="" alt="avt" height="100" width="100">
                             <input type="button" name="add" id="submit" value="Submit" onclick="updateProduct()"> </br>
                         </form>
                     </div>

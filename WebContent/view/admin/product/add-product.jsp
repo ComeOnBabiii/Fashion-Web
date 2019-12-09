@@ -59,7 +59,7 @@
                             <label>Category</label>
                             <select id="categoryInput" name="category">
 							<c:forEach items="${categories}" var="c">
-								<option value="${c.id}">${c.id}</option>
+								<option value="${c.id}" label="${c.name}"></option>
 							</c:forEach>
 					</select>
                             <div class="hr">

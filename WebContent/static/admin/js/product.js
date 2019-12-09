@@ -117,6 +117,20 @@ function refreshDataFromServer() {
 var productFil = [];
 window.addEventListener('load', async function() {
     var urlParams = new URLSearchParams(window.location.search);
+    var idPro = urlParams.get("id");
+    if (idPro) {
+        await fetchGet(`http://localhost:8080/Fashion/getProductById/api/${idPro}`)
+            .then(product => {
+                document.getElementById("idInput").value = product.id;
+                document.getElementById("nameInput").value = product.name;
+                document.getElementById("priceInput").value = product.price;
+                document.getElementById("categoryId").value = product.category.id;
+                document.getElementById("categoryId").setAttribute("selected", true);
+                document.getElementById("imgOutput").src = product.image;
+                result = product.image;
+            })
+    }
+    var urlParams = new URLSearchParams(window.location.search);
     var keyword = urlParams.get("q");
     await fetchGet("http://localhost:8080/Fashion/getListProduct/api")
         .then(products => {
