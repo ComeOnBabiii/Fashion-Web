@@ -125,7 +125,7 @@ window.addEventListener('load', async function() {
                 document.getElementById("nameInput").value = product.name;
                 document.getElementById("priceInput").value = product.price;
                 document.getElementById("categoryId").value = product.category.id;
-                document.getElementById("categoryId").setAttribute("selected", true);
+                document.getElementById("categoryInput").value = product.category.id;
                 document.getElementById("imgOutput").src = product.image;
                 result = product.image;
             })
