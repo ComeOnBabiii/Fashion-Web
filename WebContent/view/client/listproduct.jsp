@@ -8,7 +8,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Document</title>
+            <title>Shop</title>
             <script src="https://use.fontawesome.com/0cc436713d.js"></script>
 
             <c:url value="/static/client/css/shop.css" var="bootstrap"></c:url>
@@ -36,6 +36,17 @@
                         </div>
                     </div>
 
+
+                     <div class="shop option">
+                     <c:if test="${user == null}">
+                     	<a href="/Fashion/login">Login?</a>
+                     </c:if>
+                     <c:if test="${user != null }">
+                     	 <span>Xin chào ${user.name} !</span><br>  
+                     	 <a href="/Fashion/logout">Logout</a>              	
+                     </c:if>                    
+                    </div> 
+                    
                     <div class="cart-icon option">
                          <a href="/Fashion/listcart">
                         <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
@@ -63,20 +74,21 @@
 
                 <div class="footer">
                     <div class="footer-content">
-                        <a href="/">
-                            <p>My account</p>
-                        </a>
-                        <a href="/">
-                            <p>Payment</p>
-                        </a>
+                       <a href="#">
+                    <p>My account</p>
+                </a>
+                <a href="#">
+                    <p>Payment</p>
+                </a>
 
-                        <a href="/">
-                            <p>Shipping</p>
-                        </a>
+                <a href="#">
+                    <p>Shipping</p>
+                </a>
 
-                        <a href="/">
-                            <p>About</p>
-                        </a>
+                <a href="#">
+                    <p>About</p>
+                </a>
+
                     </div>
                     <div class="footer-content">
                         <h4>Stay Connected</h4>

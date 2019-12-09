@@ -15,7 +15,7 @@ import com.fashion.service.UserService;
 import com.fashion.service.impl.UserServiceImpl;
 
 
-@WebServlet(urlPatterns = { "/client/login" })
+@WebServlet(urlPatterns = { "/login" })
 public class LoginClientController extends HttpServlet {
 	
 	@Override
@@ -24,6 +24,4 @@ public class LoginClientController extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/client/login.jsp");
 		dispatcher.forward(req, resp);
 	}
-
-	
-}
+}	

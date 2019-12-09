@@ -32,16 +32,12 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 		Connection con = super.getConnection();
 
 		try {
-			PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, cartItem.getCart().getId());
 			ps.setInt(2, cartItem.getProduct().getId());
 			ps.setInt(3, cartItem.getQuantity());
 			ps.setDouble(4, cartItem.getUnitPrice());
-			ResultSet generatedKeys = ps.getGeneratedKeys();
-			if (generatedKeys.next()) {
-				int id = generatedKeys.getInt(1);
-				cartItem.setId(id);// set id vao doi tuong cart
-			}
+
 			ps.executeUpdate();
 
 			// Lay ID set ve

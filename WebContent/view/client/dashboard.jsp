@@ -34,8 +34,18 @@
                         </div>
                     </div>
 
-
-            <div class="cart-icon option">
+                     <div class="shop option">
+                     <c:if test="${user == null}">
+                     	<a href="/Fashion/login">Login?</a>
+                     </c:if>
+                     <c:if test="${user != null }">
+                     	 <span>Xin chào ${user.name} !</span><br>  
+                     	 <a href="/Fashion/logout">Logout</a>              	
+                     </c:if>
+                       
+                    </div> 
+                    
+            		<div class="cart-icon option">        
                   <a href="/Fashion/listcart">
                         <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
               		<img src="${bootstrap}" />
@@ -68,18 +78,18 @@
         </div>
         <div class="footer">
             <div class="footer-content">
-                <a href="/">
+                 <a href="#">
                     <p>My account</p>
                 </a>
-                <a href="/">
+                <a href="#">
                     <p>Payment</p>
                 </a>
 
-                <a href="/">
+                <a href="#">
                     <p>Shipping</p>
                 </a>
 
-                <a href="/">
+                <a href="#">
                     <p>About</p>
                 </a>
 

@@ -35,6 +35,17 @@
                         </div>
                     </div>
 
+
+					<div class="shop option">
+                     <c:if test="${user == null}">
+                     	<a href="/Fashion/login">Login?</a>
+                     </c:if>
+                     <c:if test="${user != null }">
+                     	 <span>Xin chào ${user.name} !</span><br>  
+                     	 <a href="/Fashion/logout">Logout</a>              	
+                     </c:if>                      
+                    </div> 
+                                   
                         <div class="cart-icon option">
                   <a href="/Fashion/listcart">
                         <c:url value="/static/client/images/shopping-cart.png" var="bootstrap"></c:url>
@@ -59,7 +70,7 @@
             </div>
         </div>
         <div class="body">
-            <div class="login">RETURNING CUSTOMER <a href="/Fashion/client/login">CLICK HERE TO LOGIN</a></div>
+            <div class="login">RETURNING CUSTOMER <a href="/Fashion/login">CLICK HERE TO LOGIN</a></div>
             <div class="order">
                 <div class="billing order-block">
                     <h2>BILLING ADDRESS</h2>
@@ -85,7 +96,7 @@
                 </div>
                 <div class="your-order order-block">
                     <h2>YOUR ORDER</h2>
-                    <form action="/Fashion/addOrder" method="post">
+                    <form action="/Fashion/addOrder" method="post" name="myform">
                         <div class="payment-price">
                             <div class="payment-table">
                                 <table style="width:100%">
@@ -121,7 +132,7 @@
                             </div>
                         </div>
                         <!-- <button class="submit" type="button" onclick="AddOrder()">ORDER</button> -->
-                        <input type="submit" class="payment-button" value="ORDER">
+                        <input type="button" class="payment-button"  onclick="submitform()" value="ORDER">
                     </form>
 
                 </div>
@@ -159,3 +170,22 @@
     </div>
 </body>
 </html>
+<script>
+function submitform(){
+	var usernamelogin = '${userlogin}';
+	 if(usernamelogin === "abc"){
+		alert("You need login !!!");
+		return false;		
+	}
+	var cartnull = '${cartnull}';
+	if(cartnull === 'cartnull'){
+		alert("Cart null . Please order at least 1 product!");
+		return false;
+	}
+	else{
+		document.myform.submit();
+		alert("You order successfully! Thank you ^^")
+	} 
+	
+}
+</script>

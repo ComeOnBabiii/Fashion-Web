@@ -39,6 +39,7 @@ public class AddOrderController extends HttpServlet {
 		cart.setBuyDate(new java.sql.Date(time));
 		// luu xuong database
 		cartService.insert(cart);
+		cart.getId();
 
 		///LUU SAN PHAM LAY TU SESSION DE LUU XUONG DATABASE
 		Object objCart = session.getAttribute("cart");

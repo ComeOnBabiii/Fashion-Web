@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fashion.model.Category;
 import com.fashion.model.Product;
+import com.fashion.model.User;
 import com.fashion.service.CategoryService;
 import com.fashion.service.ProductService;
 import com.fashion.service.impl.CategoryServiceImpl;
@@ -28,7 +30,13 @@ public class ListProductController extends HttpServlet {
 		req.setAttribute("productes", productes);
 		
 		List<Category> categories = categoryService.getAll();
-		req.setAttribute("categories", categories);
+		req.setAttribute("categories", categories);		HttpSession httpSession = req.getSession();
+		Object userObject = httpSession.getAttribute("user");
+		if(userObject!=null) {
+			User user = (User) userObject;
+			req.setAttribute("user", user);
+		}
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/client/listproduct.jsp");
 		dispatcher.forward(req, resp);
 	}
