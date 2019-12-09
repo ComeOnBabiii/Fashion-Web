@@ -186,7 +186,7 @@ async function updateUser() {
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
-    var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
+    var rollAdmin = await document.getElementById("roleAdmin").checked ? "admin" : "user";
     
     if (name !== "" && username !== "" && password !== "") {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');

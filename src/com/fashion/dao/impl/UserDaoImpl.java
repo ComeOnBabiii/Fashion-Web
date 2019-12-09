@@ -33,17 +33,17 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 
 	@Override
 	public void edit(User user) {
-		String sql = "UPDATE user SET name = ? , username = ?, password = ?,avatar = ?, roll = ? WHERE id = ?";
+		String sql = "UPDATE user SET name = ? , username = ?,avatar = ?, roll = ? WHERE id = ?";
 		Connection con = super.getConnection();
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getUsername());
-			ps.setString(3, user.getPassword());
-			ps.setString(4, user.getAvatar());
-			ps.setString(5, user.getRollAdmin());
-			ps.setInt(6, user.getId());
+			//ps.setString(3, user.getPassword());
+			ps.setString(3, user.getAvatar());
+			ps.setString(4, user.getRollAdmin());
+			ps.setInt(5, user.getId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

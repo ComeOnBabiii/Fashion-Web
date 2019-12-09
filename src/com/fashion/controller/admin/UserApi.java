@@ -181,20 +181,6 @@ public class UserApi extends HttpServlet {
 	    String payload = buffer.toString();
 	    user = gson.fromJson(payload, User.class);
 	    
-	    String pwd= user.getPassword();
-	    String pass="";
-	    try {
-	    	 String afterDecrypt = decrypt(pwd);
-	    	 
-	    	 byte[] bytes = Hex.decodeHex(afterDecrypt.toCharArray());
-	    	  pass= new String(bytes, "UTF-8");
-	    	
-	    	 } catch (Exception e) {
-	    	 e.printStackTrace();
-	    	 }
-	    String hash_pws= getSHAHash(pass);
-	    user.setPassword(hash_pws);
-
 		user.setId(Integer.parseInt(modelId));
 		userService.edit(user);
 	}
