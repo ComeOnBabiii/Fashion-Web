@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Product List</title>
+    <title>Cart List</title>
     <c:url value="/static/admin/css/admin.css" var="bootstrap"></c:url>
     <link href="${bootstrap}" rel="stylesheet" type="text/css" media="all">
 
@@ -40,19 +40,17 @@
         <div class="content">
             <div class="table-container">
                 <div class="title">
-                    <h3>List Product</h3>
+                    <h3>List Cart</h3>
                 </div>
                 <div class="table">
                     <table id="table">
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Image</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                                <th>CartID</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
                             </tr>
                         </thead>
                         <tbody id="tbody">
@@ -64,7 +62,7 @@
         </div>
     </div>
 
-    <c:url value="/static/admin/js/product.js" var="test"></c:url>
+    <c:url value="/static/admin/js/cartitem.js" var="test"></c:url>
     <script src="${test}"></script>
 
 </body>

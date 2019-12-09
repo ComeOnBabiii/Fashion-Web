@@ -7,7 +7,7 @@ async function fetchGet(url) {
         };
         let requestInit = { method: 'GET', headers };
         const response = await fetch(url, requestInit);
-        if (response.status === 200) return await response.json();
+        return await response.json();
     } catch (error) {
         throw error;
     }
@@ -25,7 +25,7 @@ async function insertObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -42,7 +42,7 @@ async function updateObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -57,23 +57,24 @@ async function deleteObjectToServer(url, id) {
             },
         });
         var responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : `);
     }
 }
+var userFil;
 
 function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
     fetchGet("http://localhost:8080/Fashion/getListUser/api")
         .then(users => {
-            users.map((user) => {
+            userFil = users;
+            users.map((user, index) => {
                 var idz = `${user.id}`;
                 var child = createNode('tr');
                 var tdId = createNode('td');
                 var tdName = createNode('td');
                 var tdUsername = createNode('td');
-                var tdPass = createNode('td');
                 var tdRole = createNode('td');
                 var tdAvatar = createNode('td');
                 var imgAvatar = createNode('img');
@@ -83,10 +84,9 @@ function refreshDataFromServer() {
                 var tdEdit = createNode('td');
                 var btnDelete = createNode('button');
                 var btnEdit = createNode('button');
-                tdId.innerHTML = `${user.id}`;
+                tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${user.name}`;
                 tdUsername.innerHTML = `${user.username}`;
-                tdPass.innerHTML = `${user.password}`;
                 tdRole.innerHTML = `${user.rollAdmin}`;
 
                 btnDelete.innerHTML = "Delete";
@@ -104,7 +104,6 @@ function refreshDataFromServer() {
                 append(child, tdId);
                 append(child, tdName);
                 append(child, tdUsername);
-                append(child, tdPass);
                 append(child, tdRole);
                 append(child, tdAvatar);
                 append(child, tdDelete);
@@ -117,9 +116,10 @@ function refreshDataFromServer() {
         });
 };
 
-
 window.addEventListener('load', function() {
     refreshDataFromServer();
+    console.log(userFil);
+    debugger;
 }, false);
 
 function createNode(element) {
@@ -140,6 +140,7 @@ fileInput.onchange = function() {
 }
 var checked = 0;
 async function insertUser() {
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
@@ -158,7 +159,7 @@ async function insertUser() {
             console.log(error)
         });
 
-    if (name !== "" && username !== "" && password !== "" && checked === 0) {
+    if (name !== "" && username !== "" && re.test(password) && checked === 0) {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
         var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
@@ -186,8 +187,8 @@ async function updateUser() {
     var name = await document.getElementById("nameInput").value;
     var username = await document.getElementById("usernameInput").value;
     var password = await document.getElementById("passwordInput").value;
-    var rollAdmin = await document.getElementById("roleAdmin").checked ? "Role Admin" : "Role User";
-    
+    var rollAdmin = await document.getElementById("roleAdmin").checked ? "admin" : "user";
+
     if (name !== "" && username !== "" && password !== "") {
         var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
@@ -198,7 +199,7 @@ async function updateUser() {
             id: id,
             name: name,
             username: username,
-           
+
             rollAdmin: rollAdmin,
             avatar: result
         }

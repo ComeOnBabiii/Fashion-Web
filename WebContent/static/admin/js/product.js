@@ -7,7 +7,7 @@ async function fetchGet(url) {
         };
         let requestInit = { method: 'GET', headers };
         const response = await fetch(url, requestInit);
-        if (response.status === 200) return await response.json();
+        return await response.json();
     } catch (error) {
         throw error;
     }
@@ -25,7 +25,7 @@ async function insertObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -42,7 +42,7 @@ async function updateObjectToServer(url, body) {
             body: JSON.stringify(body)
         });
         let responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : ${error}`);
     }
@@ -57,7 +57,7 @@ async function deleteObjectToServer(url, id) {
             },
         });
         var responseJson = await response.json();
-        return responseJson.result;
+        return responseJson;
     } catch (error) {
         console.error(`Error is : `);
     }
@@ -67,7 +67,7 @@ function refreshDataFromServer() {
     const parent = document.getElementById('tbody');
     fetchGet('http://localhost:8080/Fashion/getListProduct/api')
         .then(products => {
-            products.map((product) => {
+            products.map((product, index) => {
                 var idz = `${product.id}`;
                 var child = createNode('tr');
                 var tdId = createNode('td');
@@ -82,7 +82,7 @@ function refreshDataFromServer() {
                 var tdEdit = createNode('td');
                 var btnDelete = createNode('button');
                 var btnEdit = createNode('button');
-                tdId.innerHTML = `${product.id}`;
+                tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${product.name}`;
                 tdPrice.innerHTML = `${product.price}`;
                 tdCategory.innerHTML = `${product.category.id}`;
@@ -107,7 +107,6 @@ function refreshDataFromServer() {
                 append(child, tdEdit);
                 append(parent, child);
             })
-            console.log(users);
         })
         .catch(error => {
             console.log(error)

@@ -198,7 +198,7 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				"INNER JOIN cart " + 
 				"ON cart_item.id_cart = cart.id " + 
 				"INNER JOIN product " + 
-				"ON cart_item.id_product = product.id WHERE cart_item.id= ?";
+				"ON cart_item.id_product = product.idpro WHERE cart_item.id= ?";
 		Connection con = super.getConnection();
 
 		try {
@@ -222,7 +222,7 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				cartItem.setProduct(product);
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getDouble("unit_price"));
-
+				cartItem.setId(rs.getInt("id"));
 				cartItemList.add(cartItem);
 
 			}
