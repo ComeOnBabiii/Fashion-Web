@@ -17,25 +17,30 @@
 <body>
 	<div class="container">
 		<div class="navbar">
-			<a href="#home">Admin</a>
-			<div class="dropdown">
-				<button class="dropbtn">
-					Xin chào ${user.name} ! <i class="fa fa-caret-down"></i>
-				</button>
-				<div class="dropdown-content">
-					<a href="#">User Profile</a> <a href="#">Setting</a>
-					<hr />
-					<a href="/Fashion/admin/logout">Log out</a>
-				</div>
-			</div>
-		</div>
+	                <div class="admin">
+	                <a href="#home"><i class="fa fa-wrench"></i> ALESIA</a>
+	                </div>
+                    
+                    <div class="dropdown">
+                        <button class="dropbtn">Xin chào ${user.name} !
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                        <div class="dropdown-content">
+                            <a href="#">User Profile</a>
+                            <a href="#">Setting</a>
+                            <hr />
+                            <a href="/Fashion/admin/logout">Log out</a>
+                        </div>
+                    </div>
+                </div>
 
-		<div class="sidenav">
-			 <a href="/Fashion/admin/user/list">User</a>
-            <a href="/Fashion/admin/category/list">Category</a>
-            <a href="/Fashion/admin/product/list">Product</a>
-            <a href="/Fashion/admin/cart/list">Cart</a>
-		</div>
+                <div class="sidenav">
+                    <a href="/Fashion/admin/user/list"><div><p class="nav-text">User <i class="ikon fa fa-user"></i></p></div></a>                  
+                    <a href="/Fashion/admin/category/list"><div><p class="nav-text">Category <i class="ikon fa fa-list-alt" aria-hidden="true"></i></p></div></a> 
+
+                    <a href="/Fashion/admin/product/list"><div><p class="nav-text">Product <i class="ikon fa fa-product-hunt"></i></p></div></a>  
+                    <a href="/Fashion/admin/cart/list"><div><p class="nav-text">Cart <i class="ikon fa fa-shopping-cart"></i></p></div></a> 
+                </div>
 
 		<div class="add-content">
 

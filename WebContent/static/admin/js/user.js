@@ -256,23 +256,26 @@ async function insertUser() {
 async function updateUser() {
     var id = await document.getElementById("idInput").value;
     var name = await document.getElementById("nameInput").value;
+    var phone = await document.getElementById("phoneInput").value;
+    var address = await document.getElementById("addressInput").value;
     var username = await document.getElementById("usernameInput").value;
-    var password = await document.getElementById("passwordInput").value;
     var rollAdmin = await document.getElementById("role_admin").checked ? "admin" : "user";
 
-    if (name !== "" && username !== "" && password !== "") {
-        var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
+    if (name !== "" && username !== "") {
+        /*var rkEncryptionKey = CryptoJS.enc.Base64.parse('u/Gu5posvwDsXUnV5Zaq4g==');
         var rkEncryptionIv = CryptoJS.enc.Base64.parse('5D9r9ZVzEYYgha93/aUK2w==');
         var utf8Stringified = CryptoJS.enc.Utf8.parse(password);
         var encrypted = CryptoJS.AES.encrypt(utf8Stringified.toString(), rkEncryptionKey, { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7, iv: rkEncryptionIv });
-        password = encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+        password = encrypted.ciphertext.toString(CryptoJS.enc.Base64);*/
         var obj = {
             id: id,
             name: name,
             username: username,
 
             rollAdmin: rollAdmin,
-            avatar: result
+            avatar: result,
+            address: address,
+            phone: phone
         }
         updateObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
