@@ -85,7 +85,7 @@ function refreshDataFromServer() {
                 tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${product.name}`;
                 tdPrice.innerHTML = `${product.price}`;
-                tdCategory.innerHTML = `${product.category.id}`;
+                tdCategory.innerHTML = `${product.category.name}`;
                 btnDelete.innerHTML = "Delete";
                 btnDelete.onclick = function() {
                     deleteObjectToServer('http://localhost:8080/Fashion/getListProduct/api', product.id).then(document.location.reload(true));

@@ -131,7 +131,18 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 	@Override
 	public List<Product> getAll() {
 		List<Product> products = new ArrayList<Product>();
-		String sql = "SELECT * FROM product";
+		String sql = "SELECT \r\n" + 
+				"product.idpro,\r\n" + 
+				"product.idcate as id_Cate,\r\n" + 
+				"product.name as product_name,\r\n" + 
+				"product.price,\r\n" + 
+				"product.image,\r\n" + 
+				"\r\n" + 
+				"category.idcate,\r\n" + 
+				"category.name as category_name,\r\n" + 
+				"category.description\r\n" + 
+				"from product inner join category\r\n" + 
+				"where product.idcate =  category.idcate";
 		Connection conn = super.getConnection();
 
 		try {
@@ -142,12 +153,15 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 				Product product = new Product();
 
 				product.setId(rs.getInt("idpro"));
-				product.setName(rs.getString("name"));
+				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getDouble("price"));
 				product.setImage(rs.getString("image"));
 
 				Category category = new Category();
 				category.setId(rs.getInt("idcate"));
+				category.setName(rs.getString("category_name"));
+				category.setDescription(rs.getString("description"));
+				
 				product.setCategory(category);
 
 				products.add(product);
