@@ -29,6 +29,7 @@ async function insertObjectToServer(url, body) {
         console.error(`Error is : ${error}`);
     }
 }
+var checked = 0;
 
 function getBase64OfFile(file, callback) {
     const fr = new FileReader();
@@ -50,7 +51,7 @@ fileInput.onchange = function() {
     });
 }
 
-var checked = 0;
+
 async function insertUser() {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     var name = await document.getElementById("nameInput").value;
@@ -84,7 +85,7 @@ async function insertUser() {
             address: address,
             phone: phone
         }
-        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
+        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(alert("Signup success!")).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
     } else {
         alert("Invalid user");
         debugger;
