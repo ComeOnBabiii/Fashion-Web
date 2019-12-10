@@ -43,7 +43,7 @@
                             <h3>List User</h3>
                         </div>
                         <form>
-                            Search: <input id="searchBar" type="search" name="q">
+                            Search Username: <input id="searchBar" type="search" name="q">
                             <button onclick="search()">Search</button>
                         </form>
                         <div class="table">
@@ -56,8 +56,7 @@
                                         <th>Address</th>
                                         <th>Username</th>
                                         <th>Role</th>
-                                        <th>Avatar</th>
-                                        <th>Delete</th>
+                                        <th>Avatar</th>                            
                                         <th>Edit</th>
                                     </tr>
                                 </thead>

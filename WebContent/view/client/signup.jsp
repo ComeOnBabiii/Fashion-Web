@@ -45,7 +45,7 @@
                     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
                     <div class="clearfix">
-                        <button type="button" class="cancelbtn">Cancel</button>
+                        <button type="button" class="cancelbtn" onclick="cancelUser()">Cancel</button>
                         <button type="button" class="signupbtn" onclick="insertUser()">Sign Up</button>
                     </div>
                 </div>
@@ -57,3 +57,9 @@
 
 
         </html>
+<script>
+	function cancelUser(){
+		location.replace("http://localhost:8080/Fashion/login");
+	}
+	
+</script>

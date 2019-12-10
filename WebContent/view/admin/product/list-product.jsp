@@ -43,7 +43,7 @@
                             <h3>List Product</h3>
                         </div>
                         <form>
-                            Search: <input id="searchBar" type="search" name="q">
+                            Search Name: <input id="searchBar" type="search" name="q">
                             <button onclick="search()">Search</button>
                         </form>
                         <div class="table">

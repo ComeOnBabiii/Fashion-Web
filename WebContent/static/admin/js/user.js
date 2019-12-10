@@ -81,9 +81,7 @@ function refreshDataFromServer() {
                 var imgAvatar = createNode('img');
                 imgAvatar.className = "user-image";
                 imgAvatar.src = `${user.avatar}`;
-                var tdDelete = createNode('td');
                 var tdEdit = createNode('td');
-                var btnDelete = createNode('button');
                 var btnEdit = createNode('button');
                 tdId.innerHTML = index + 1;
                 tdName.innerHTML = `${user.name}`;
@@ -92,10 +90,6 @@ function refreshDataFromServer() {
                 tdUsername.innerHTML = `${user.username}`;
                 tdRole.innerHTML = `${user.rollAdmin}`;
 
-                btnDelete.innerHTML = "Delete";
-                btnDelete.onclick = function() {
-                    deleteObjectToServer("http://localhost:8080/Fashion/getListUser/api", user.id).then(document.location.reload(true));
-                };
                 btnEdit.innerHTML = "Edit";
                 btnEdit.onclick = function() {
                     location.replace("http://localhost:8080/Fashion/admin/user/edit?id=" + idz)
@@ -103,7 +97,6 @@ function refreshDataFromServer() {
 
                 append(tdEdit, btnEdit);
                 append(tdAvatar, imgAvatar);
-                append(tdDelete, btnDelete);
                 append(child, tdId);
                 append(child, tdName);
                 append(child, tdPhone);
@@ -111,7 +104,6 @@ function refreshDataFromServer() {
                 append(child, tdUsername);
                 append(child, tdRole);
                 append(child, tdAvatar);
-                append(child, tdDelete);
                 append(child, tdEdit);
                 append(parent, child);
             })
@@ -168,7 +160,6 @@ window.addEventListener('load', async function() {
             imgAvatar.src = `${user.avatar}`;
             var tdDelete = createNode('td');
             var tdEdit = createNode('td');
-            var btnDelete = createNode('button');
             var btnEdit = createNode('button');
             tdId.innerHTML = index + 1;
             tdName.innerHTML = `${user.name}`;
@@ -176,11 +167,6 @@ window.addEventListener('load', async function() {
             tdAddress.innerHTML = `${user.address}`;
             tdUsername.innerHTML = `${user.username}`;
             tdRole.innerHTML = `${user.rollAdmin}`;
-
-            btnDelete.innerHTML = "Delete";
-            btnDelete.onclick = function() {
-                deleteObjectToServer("http://localhost:8080/Fashion/getListUser/api", user.id).then(document.location.reload(true));
-            };
             btnEdit.innerHTML = "Edit";
             btnEdit.onclick = function() {
                 location.replace("http://localhost:8080/Fashion/admin/user/edit?id=" + idz)
@@ -188,7 +174,6 @@ window.addEventListener('load', async function() {
 
             append(tdEdit, btnEdit);
             append(tdAvatar, imgAvatar);
-            append(tdDelete, btnDelete);
             append(child, tdId);
             append(child, tdName);
             append(child, tdPhone);
@@ -196,7 +181,6 @@ window.addEventListener('load', async function() {
             append(child, tdUsername);
             append(child, tdRole);
             append(child, tdAvatar);
-            append(child, tdDelete);
             append(child, tdEdit);
             append(parent, child);
         });

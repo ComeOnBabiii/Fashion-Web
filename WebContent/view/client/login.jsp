@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 	
-	<c:url value="/static/admin/css/login.css" var="logincss"></c:url>
+	<c:url value="/static/client/css/login.css" var="logincss"></c:url>
 	<link href="${logincss}" rel="stylesheet" type="text/css" media="all">
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,11 +32,11 @@
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" id="passwordInput" name="psw" required>
-
-                <button type="button" onclick="loginUser()">Login</button>
-                <!-- <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label> -->
+				<div class="clearfix">
+                        <button type="button" class="cancelbtn" onclick="cancel()">Cancel</button>
+                        <button type="button" class="signinbtn" onclick="loginUser()">Sign In</button>
+                    </div>
+				<label>You do not an account? <a style="text-decoration: none;" href="/Fashion/signup">Create now!</a></label>
             </div>
 
             <!-- <div class="container" style="background-color:#f1f1f1">
@@ -49,6 +49,10 @@
 	<c:url value="/static/client/js/login.js" var="test"></c:url>
     <script src="${test}"></script>
 </body>
-
-
 </html>
+	
+<script>
+	function cancel(){
+		location.replace("http://localhost:8080/Fashion/home");
+	}	
+</script>

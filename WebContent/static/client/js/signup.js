@@ -85,7 +85,7 @@ async function insertUser() {
             address: address,
             phone: phone
         }
-        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(alert("Signup success!")).then(location.replace("http://localhost:8080/Fashion/admin/user/list"));
+        await insertObjectToServer("http://localhost:8080/Fashion/getListUser/api", obj).then(alert("Signup success!")).then(location.replace("http://localhost:8080/Fashion/login"));
     } else {
         alert("Invalid user");
         debugger;

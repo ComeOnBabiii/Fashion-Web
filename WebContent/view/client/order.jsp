@@ -72,28 +72,6 @@
         <div class="body">
             <div class="login">RETURNING CUSTOMER <a href="/Fashion/login">CLICK HERE TO LOGIN</a></div>
             <div class="order">
-                <div class="billing order-block">
-                    <h2>BILLING ADDRESS</h2>
-                    <div class="table">
-                        <form>
-                            <table>
-                                <input placeholder="Phone Number" />
-                                <div class="first-name">
-                                    <input placeholder="First Name" />
-                                </div>
-                                <div class="last-name">
-                                    <input placeholder="Last Name" />
-                                </div>
-                                <input placeholder="Address" />
-                                <div class="note">
-                                    <input placeholder="Note here something if you want..." />
-                                </div>
-                            </table>
-
-                        </form>
-                    </div>
-
-                </div>
                 <div class="your-order order-block">
                     <h2>YOUR ORDER</h2>
                     <form action="/Fashion/addOrder" method="post" name="myform">
