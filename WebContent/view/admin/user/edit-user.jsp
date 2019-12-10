@@ -20,14 +20,14 @@
         <div class="navbar">
             <a href="#home">ComeOnBabiiizzzz</a>
             <div class="dropdown">
-                <button class="dropbtn">User
+                <button class="dropbtn">Xin chào ${user.name} !
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                     <a href="#">User Profile</a>
                     <a href="#">Setting</a>
                     <hr />
-                    <a href="#">Log out</a>
+                    <a href="/Fashion/admin/logout">Log out</a>
                 </div>
             </div>
         </div>
