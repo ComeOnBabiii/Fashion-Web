@@ -19,7 +19,7 @@
 <body>
 
 	<div class="main-container">
-        <form action="action_page.php" method="post">
+        <form method="post">
             <div class="imgcontainer">
                 <c:url value="/static/client/images/slides/1.jpg" var="imagelogin"></c:url>
                     <img src="${imagelogin}" />
