@@ -186,19 +186,29 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 
 	public List<CartItem> search(int cart_id) {
 		List<CartItem> cartItemList = new ArrayList<CartItem>();
-		String sql = "SELECT " + 
-				"cart_item.id, " + 
-				"cart_item.quantity, " + 
-				"cart_item.unit_price, " + 
-				"cart.id_user, " + 
-				"cart.buy_date, " + 
-				"product.name, " + 
-				"product.price " + 
-				"FROM cart_item " + 
-				"INNER JOIN cart " + 
-				"ON cart_item.id_cart = cart.id " + 
-				"INNER JOIN product " + 
-				"ON cart_item.id_product = product.idpro WHERE cart_item.id= ?";
+		/*
+		 * String sql = "SELECT " + "cart_item.id, " + "cart_item.quantity, " +
+		 * "cart_item.unit_price, " + "cart.id_user, " + "cart.buy_date, " +
+		 * "product.name, " + "product.price " + "FROM cart_item " + "INNER JOIN cart "
+		 * + "ON cart_item.id_cart = cart.id " + "INNER JOIN product " +
+		 * "ON cart_item.id_product = product.idpro WHERE cart_item.id_cart= ?";
+		 */
+		
+		String sql ="SELECT \r\n" + 
+				"				cart_item.id,\r\n" + 
+				"				cart_item.quantity, \r\n" + 
+				"				cart_item.unit_price, \r\n" + 
+				"				cart.id_user, \r\n" + 
+				"                cart.id AS cart_id, \r\n" + 
+				"				cart.buy_date, \r\n" + 
+				"				product.name,\r\n" + 
+				"                product.idpro,\r\n" + 
+				"				product.price\r\n" + 
+				"				FROM fashion.cart_item \r\n" + 
+				"				INNER JOIN fashion.cart \r\n" + 
+				"				ON cart_item.id_cart = cart.id \r\n" + 
+				"				INNER JOIN fashion.product \r\n" + 
+				"				ON cart_item.id_product = product.idpro WHERE cart_item.id_cart=?";
 		Connection con = super.getConnection();
 
 		try {
@@ -210,10 +220,12 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				User user = userDao.get(rs.getInt("id_user"));
 				
 				Cart cart = new Cart();
+				cart.setId(rs.getInt("cart_id"));
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("buy_date"));
 				
 				Product product = new Product();
+				product.setId(rs.getInt("idpro"));
 				product.setName(rs.getString("name"));
 				product.setPrice(rs.getDouble("price"));
 				
