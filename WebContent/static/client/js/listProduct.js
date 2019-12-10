@@ -68,7 +68,8 @@ function refreshCategoryFromServer() {
                 var bName = createNode('a');
                 aName.innerHTML = `${category.name}`;
                 aName.onclick = function() {
-                    alert(id);                  
+                    //alert(id);   
+                    location.replace("http://localhost:8080/Fashion/shop?id=" + id)
                 }
                 append(child, aName);
                 
@@ -80,8 +81,54 @@ function refreshCategoryFromServer() {
         });
 };
 window.addEventListener('load', function() {
-    refreshCategoryFromServer();
-    refreshProductFromServer();
+	var urlParams = new URLSearchParams(window.location.search);
+    var idCat = urlParams.get("id");
+    if(idCat){
+    	const parent = document.getElementById('product-container');
+        fetchGet('http://localhost:8080/Fashion/getListProduct/api')
+            .then(products => {
+                products.map((product) => {
+                    var child = createNode('div');
+                    child.className = "product-image";
+                    var imgProduct = createNode('img');
+                    imgProduct.className = "img-product";
+                    var childDivDes = createNode('div');
+                    childDivDes.className = "product-description";
+                    var pName = createNode('p');
+                    var pPrice = createNode('p');
+                    var btnAdd = createNode('button');
+
+                    imgProduct.src = `${product.image}`;
+                    pName.innerHTML = `${product.name}`;
+                    pPrice.innerHTML = `${product.price} $` ;
+                    pName.className = "product-name";
+                    pPrice.className = "product-price";
+                    
+                    btnAdd.innerHTML = "Add";
+                    btnAdd.onclick = function() {
+                    	var id = `${product.id}`;
+                    	//alert(idpro);
+                    	var obj = {
+                    			id: id
+                    	    }
+                    	    insertObjectToServer(obj);
+                    		alert("Success");
+                    };
+                    append(childDivDes, imgProduct);
+                    append(childDivDes, btnAdd);
+                    append(childDivDes, pName);    
+                    append(childDivDes, pPrice);                         
+                    append(child, childDivDes);
+                    append(parent, child);
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }else{
+    	refreshCategoryFromServer();
+        refreshProductFromServer();
+    }
 }, false);
 
 function createNode(element) {

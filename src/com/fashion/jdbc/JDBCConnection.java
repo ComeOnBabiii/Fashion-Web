@@ -18,8 +18,8 @@ public class JDBCConnection {
 	public Connection getConnection() {
 		try {
 			final String username = "root";
-			final String password = "root";
-			final String url = "jdbc:mysql://localhost:8889/fashion";
+			final String password = "luvngok";
+			final String url = "jdbc:mysql://localhost:3306/fashion";
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
