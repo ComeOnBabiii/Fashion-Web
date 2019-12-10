@@ -15,7 +15,7 @@ import com.fashion.service.UserService;
 import com.fashion.service.impl.UserServiceImpl;
 
 
-@WebServlet(urlPatterns = { "/admin/login" })
+@WebServlet(urlPatterns = { "/loginAdmin" })
 public class LoginController extends HttpServlet {
 	
 	@Override

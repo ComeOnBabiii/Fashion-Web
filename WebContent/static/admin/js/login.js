@@ -14,8 +14,9 @@ async function insertObjectToServer(url, body) {
         if (check=="OK") {
         	location.replace("http://localhost:8080/Fashion/admin/user/list");
         }else {
-        	location.replace("http://localhost:8080/Fashion/admin/login");
+        	//location.replace("http://localhost:8080/Fashion/admin/login");
         	alert("Wrong username or password!");
+        	return false;
         }
     } catch (error) {
         console.error(`Error is : ${error}`);
