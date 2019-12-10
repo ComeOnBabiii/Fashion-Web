@@ -30,24 +30,24 @@ function refreshProductFromServer() {
 
                 imgProduct.src = `${product.image}`;
                 pName.innerHTML = `${product.name}`;
-                pPrice.innerHTML = `${product.price} $` ;
+                pPrice.innerHTML = `${product.price} $`;
                 pName.className = "product-name";
                 pPrice.className = "product-price";
-                
+
                 btnAdd.innerHTML = "Add";
                 btnAdd.onclick = function() {
-                	var id = `${product.id}`;
-                	//alert(idpro);
-                	var obj = {
-                			id: id
-                	    }
-                	    insertObjectToServer(obj);
-                		alert("Success");
+                    var id = `${product.id}`;
+                    //alert(idpro);
+                    var obj = {
+                        id: id
+                    }
+                    insertObjectToServer(obj);
+                    alert("Success");
                 };
                 append(childDivDes, imgProduct);
                 append(childDivDes, btnAdd);
-                append(childDivDes, pName);    
-                append(childDivDes, pPrice);                         
+                append(childDivDes, pName);
+                append(childDivDes, pPrice);
                 append(child, childDivDes);
                 append(parent, child);
             })
@@ -61,31 +61,37 @@ function refreshCategoryFromServer() {
     const parent = document.getElementById('selector');
     fetchGet('http://localhost:8080/Fashion/getListCategory/api')
         .then(categories => {
+            var child = createNode('span');
+            var aNameAll = createNode('a');
+            aNameAll.innerHTML = "ALL"
+            aNameAll.onclick = function() {
+                location.replace("http://localhost:8080/Fashion/shop")
+            }
+            aNameAll.className = "category-type";
+            append(child, aNameAll);
             categories.map((category) => {
-            	var id = `${category.id}`;
-                var child = createNode('span');
+                var id = `${category.id}`;
                 var aName = createNode('a');
-                var bName = createNode('a');
                 aName.innerHTML = `${category.name}`;
                 aName.onclick = function() {
-                    //alert(id);   
                     location.replace("http://localhost:8080/Fashion/shop?id=" + id)
                 }
+                aName.className = "category-type";
                 append(child, aName);
-                
-                append(parent, child);
-            })
+            });
+            append(parent, child);
         })
         .catch(error => {
             console.log(error)
         });
 };
 window.addEventListener('load', function() {
-	var urlParams = new URLSearchParams(window.location.search);
+    var urlParams = new URLSearchParams(window.location.search);
     var idCat = urlParams.get("id");
-    if(idCat){
-    	const parent = document.getElementById('product-container');
-        fetchGet('http://localhost:8080/Fashion/getListProduct/api')
+    if (idCat) {
+        const parent = document.getElementById('product-container');
+        refreshCategoryFromServer();
+        fetchGet(`http://localhost:8080/Fashion/getProductByCategoryId/api/${idCat}`)
             .then(products => {
                 products.map((product) => {
                     var child = createNode('div');
@@ -100,24 +106,24 @@ window.addEventListener('load', function() {
 
                     imgProduct.src = `${product.image}`;
                     pName.innerHTML = `${product.name}`;
-                    pPrice.innerHTML = `${product.price} $` ;
+                    pPrice.innerHTML = `${product.price} $`;
                     pName.className = "product-name";
                     pPrice.className = "product-price";
-                    
+
                     btnAdd.innerHTML = "Add";
                     btnAdd.onclick = function() {
-                    	var id = `${product.id}`;
-                    	//alert(idpro);
-                    	var obj = {
-                    			id: id
-                    	    }
-                    	    insertObjectToServer(obj);
-                    		alert("Success");
+                        var id = `${product.id}`;
+                        //alert(idpro);
+                        var obj = {
+                            id: id
+                        }
+                        insertObjectToServer(obj);
+                        alert("Success");
                     };
                     append(childDivDes, imgProduct);
                     append(childDivDes, btnAdd);
-                    append(childDivDes, pName);    
-                    append(childDivDes, pPrice);                         
+                    append(childDivDes, pName);
+                    append(childDivDes, pPrice);
                     append(child, childDivDes);
                     append(parent, child);
                 })
@@ -125,8 +131,8 @@ window.addEventListener('load', function() {
             .catch(error => {
                 console.log(error)
             });
-    }else{
-    	refreshCategoryFromServer();
+    } else {
+        refreshCategoryFromServer();
         refreshProductFromServer();
     }
 }, false);
@@ -151,7 +157,7 @@ async function insertObjectToServer(obj) {
             body: JSON.stringify(obj)
         });
         let responseJson = await response.json();
-        return responseJson.result;       
+        return responseJson.result;
         //location.replace("http://localhost:8080/Fashion/admin/category/edit")
     } catch (error) {
         console.error(`Error is : ${error}`);
@@ -159,9 +165,9 @@ async function insertObjectToServer(obj) {
 }
 
 async function deleteCart(key) {
-	//alert(key);
+    //alert(key);
     var obj = {
-    	key:key
+        key: key
     }
     await deleteObjectToServer('http://localhost:8080/Fashion/addToCart/api', obj.key).then(
         location.replace("http://localhost:8080/Fashion/listcart")
