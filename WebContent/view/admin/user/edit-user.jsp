@@ -64,9 +64,9 @@
                     <div class="hr">
                         <hr>
                     </div>
-                    <label for="exampleInputRoll">Roll</label>
-                    <input id="roleAdmin" name="role" type="radio" value="ROLE_ADMIN">ADMIN
-                    <input name="role" type="radio" value="ROLE_USER">USER
+                    <label for="exampleInputRoll">Role</label>
+                    <input id="roleAdmin" name="role" type="radio" value="admin">ADMIN
+                    <input name="role" type="radio" value="user">USER
                     <div class="hr">
                         <hr>
                     </div>

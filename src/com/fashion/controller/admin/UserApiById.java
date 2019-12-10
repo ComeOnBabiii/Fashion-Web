@@ -3,29 +3,37 @@ package com.fashion.controller.admin;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fashion.model.Product;
+import org.apache.commons.codec.binary.Hex;
+
 import com.fashion.model.User;
-import com.fashion.service.ProductService;
 import com.fashion.service.UserService;
-import com.fashion.service.impl.ProductServiceImpl;
 import com.fashion.service.impl.UserServiceImpl;
 import com.google.gson.Gson;
-@WebServlet(urlPatterns= {"/getProductById/api/*"})
-public class ProductApi extends HttpServlet {
+
+import net.iharder.Base64;
+@WebServlet(urlPatterns= {"/getUserById/api/*"})
+public class UserApiById extends HttpServlet {
+	UserService userService = new UserServiceImpl();
 	
-	ProductService productService = new ProductServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	//	setAccessControlHeaders(resp);
 		String pathInfo = req.getPathInfo();
 
 		if(resp == null || pathInfo.equals("/")){
@@ -44,12 +52,12 @@ public class ProductApi extends HttpServlet {
 
 		String modelId = splits[1];
 		
-		Product product= new Product();
-		product= productService.get(Integer.parseInt(modelId));
+		User user= new User();
+		user= userService.get(Integer.parseInt(modelId));
 		
 		Gson gson= new Gson();
 		PrintWriter out= resp.getWriter();
-		out.print(gson.toJson(product));		
+		out.print(gson.toJson(user));
+		
 	}
-	
 }
